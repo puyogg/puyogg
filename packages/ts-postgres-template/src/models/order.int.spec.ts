@@ -76,4 +76,34 @@ describe('Order', () => {
     const ordersAfter = await sql`SELECT * FROM ${sql(models.orderModel.tableName)}`;
     expect(ordersAfter).toHaveLength(0);
   });
+
+  test('only finds orders matching quantity', async () => {
+    const customer = await models.customerModel.create({
+      firstName: 'Yotarou',
+      lastName: 'Tran',
+      age: 24,
+    });
+    const order1A = await models.orderModel.create({
+      customerId: customer.id,
+      item: 'A',
+      quantity: 1,
+    });
+
+    const order1B = await models.orderModel.create({
+      customerId: customer.id,
+      item: 'B',
+      quantity: 1,
+    });
+
+    const order2 = await models.orderModel.create({
+      customerId: customer.id,
+      item: 'Z',
+      quantity: 2,
+    });
+
+    const orders = await models.orderModel.findByQuantity(1);
+    expect(orders).toHaveLength(2);
+    expect(orders).toEqual(expect.arrayContaining([{ id: order1A.id }, { id: order1B.id }]));
+    expect(orders).not.toContainEqual({ id: order2.id });
+  });
 });
