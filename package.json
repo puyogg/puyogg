@@ -7,7 +7,8 @@
     "ci:version": "pnpm changeset version",
     "ci:publish": "pnpm changeset publish",
     "new-lib": "node -r source-map-support/register ./node_modules/@puyogg/ts-lib-template/esm/index.js",
-    "new-api": "ts-fastify-template"
+    "new-api": "ts-fastify-template",
+    "new-db": "ts-postgres-template"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@changesets/cli": "^2.26.2",
     "@puyogg/ts-fastify-template": "workspace:^",
     "@puyogg/ts-lib-template": "workspace:^",
+    "@puyogg/ts-postgres-template": "workspace:^",
     "source-map-support": "^0.5.21"
   },
   "pnpm": {

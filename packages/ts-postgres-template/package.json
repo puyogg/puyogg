@@ -2,11 +2,17 @@
   "name": "@puyogg/ts-postgres-template",
   "version": "0.1.0",
   "description": "",
+  "bin": "./esm/bin.js",
   "main": "./cjs/index.js",
   "type": "module",
   "exports": {
     "require": "./cjs/index.js",
     "import": "./esm/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puyogg/puyogg.git",
+    "directory": "packages/ts-postgres-template"
   },
   "scripts": {
     "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm && rm -rf cjs",
@@ -35,6 +41,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.21",
     "postgres": "^3.4.3",
     "source-map-support": "^0.5.21",
     "yaml": "^2.3.4",
@@ -47,17 +54,18 @@
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@types/babel__core": "^7.20.4",
+    "@types/lodash": "^4.14.201",
     "@types/node": "^20",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "@typescript-eslint/utils": "^6.11.0",
+    "babel-plugin-source-map-support": "^2.2.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
     "concurrently": "^8.2.2",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.1.0",
-    "ts-node": "^10.9.1",
     "tsx": "^4.2.0",
     "typescript": "^5.2.2",
     "vitest": "1.0.0-beta.5"

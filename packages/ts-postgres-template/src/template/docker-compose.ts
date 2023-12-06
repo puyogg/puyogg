@@ -54,8 +54,7 @@ export const generateDockerComposeYaml = ({
     newPostgresPort = i;
   }
 
-  const templateDbService = dockerComposeBase.services['ts-db-template'];
-  console.log(templateDbService.environment);
+  const templateDbService = dockerComposeBase.services['ts-postgres-template'];
   const volumeName = `${packageName}-volume`;
 
   const newDockerService: DockerCompose['services'][keyof DockerCompose['services']] = {
@@ -65,7 +64,14 @@ export const generateDockerComposeYaml = ({
     volumes: [`${volumeName}:/var/lib/postgresql/data`],
   };
 
+  const newDockerTestService: DockerCompose['services'][keyof DockerCompose['services']] = {
+    image: templateDbService.image,
+    ports: [`${newPostgresPort}:5432`],
+    environment: structuredClone(templateDbService.environment),
+  };
+
   dockerComposeBase.services[packageName] = newDockerService;
+  dockerComposeBase.services[`${packageName}-test`] = newDockerTestService;
   dockerComposeBase.volumes[volumeName] = null;
   return yaml.stringify(dockerComposeBase, { nullStr: '' });
 };
