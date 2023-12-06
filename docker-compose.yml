@@ -9,7 +9,6 @@ services:
       POSTGRES_DB: db
     volumes:
       - ts-postgres-template-volume:/var/lib/postgresql/data
-
   ts-postgres-template-test:
     image: postgres:16
     ports:
@@ -17,7 +16,6 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: db
-
   puyoquest-db:
     image: postgres:16
     ports:

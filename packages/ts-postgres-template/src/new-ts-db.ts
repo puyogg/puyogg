@@ -89,6 +89,12 @@ export const newTsDb = async (packageName: string) => {
     'vitest',
   ]);
 
+  await fs.writeFile(
+    path.join(newLibPath, 'package.json'),
+    JSON.stringify(packageJson, undefined, 2),
+    { encoding: 'utf-8' },
+  );
+
   const filesToCopy = [
     '.eslintrc.cjs',
     '.prettierrc.mjs',
