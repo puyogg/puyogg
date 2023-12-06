@@ -2,6 +2,7 @@ import type { Sql } from 'postgres';
 import { Models, connectTestDb } from '../db.js';
 import { setupTestDb } from '../test-utils/setup-test-db.js';
 import { afterAll, beforeAll, afterEach, describe, expect, test } from 'vitest';
+import { Order } from './order.js';
 
 describe('Order', () => {
   let sql: Sql;
@@ -19,6 +20,22 @@ describe('Order', () => {
   afterEach(async () => {
     await sql`DELETE FROM ${sql(models.customerModel.tableName)}`;
     await sql`TRUNCATE ${sql(models.orderModel.tableName)}`;
+  });
+
+  test('db item matches zod schema', async () => {
+    const customer = await models.customerModel.create({
+      firstName: 'Yotarou',
+      lastName: 'Tran',
+      age: 24,
+    });
+    const order = await models.orderModel.create({
+      customerId: customer.id,
+      item: 'MyItem1',
+      quantity: 1,
+    });
+
+    const result = Order.safeParse(order);
+    expect(result.success).toBe(true);
   });
 
   test('automatically updates updated_at timestamp', async () => {
