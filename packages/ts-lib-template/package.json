@@ -1,0 +1,64 @@
+{
+  "name": "@puyogg/ts-lib-template",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./cjs/index.js",
+  "bin": "./esm/index.js",
+  "exports": {
+    "require": "./cjs/index.js",
+    "import": "./esm/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puyogg/puyogg.git",
+    "directory": "packages/ts-lib-template"
+  },
+  "scripts": {
+    "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm && rm -rf cjs",
+    "format": "prettier --write ./src",
+    "format-check": "prettier --check ./src",
+    "lint": "eslint src",
+    "lint-fix": "eslint --fix src",
+    "tsc:esm": "tsc",
+    "tsc:cjs": "tsc --outDir cjs",
+    "typecheck": "tsc",
+    "babel:esm": "BABEL_ENV=esm babel src --out-dir esm --extensions '.ts'",
+    "babel:cjs": "mkdir -p cjs && echo '{\"type\": \"commonjs\"}' > cjs/package.json && BABEL_ENV=cjs babel src --out-dir cjs --extensions '.ts'",
+    "build:esm": "pnpm tsc:esm && pnpm babel:esm",
+    "watch:esm": "concurrently \"pnpm tsc:esm --watch --preserveWatchOutput\" \"pnpm babel:esm --watch\"",
+    "build:cjs": "pnpm tsc:cjs && pnpm babel:cjs",
+    "watch:cjs": "concurrently \"pnpm tsc:cjs --watch --preserveWatchOutput\" \"pnpm babel:cjs --watch\"",
+    "build": "pnpm build:cjs && pnpm build:esm",
+    "test:unit": "vitest --config vitest.unit.config.mts",
+    "test:unit-watch": "pnpm test:unit --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/babel__core": "^7.20.4",
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/utils": "^6.11.0",
+    "babel-plugin-source-map-support": "^2.2.0",
+    "babel-plugin-transform-import-meta": "^2.2.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "vitest": "1.0.0-beta.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "source-map-support": "^0.5.21",
+    "yargs": "^17.7.2"
+  }
+}

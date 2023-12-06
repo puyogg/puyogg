@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates readme string with checklist and header 1`] = `
+"# MyPackage
+
+TODO: package description
+
+## New Library Checklist
+
+- [ ] Update README.md
+- [ ] Update TypeScript, ESLint, Prettier, and their configs (if necessary)
+- [ ] Add project references to \`tsconfig.json\`
+- Configure these package.json scripts that CI/CD looks for, if your package needs them:
+  - [ ] \`typecheck\`
+  - [ ] \`build\`
+  - [ ] \`test:unit\`
+  - [ ] \`test:int\` (Integration tests)
+  - [ ] \`build-image\` (Docker image)
+"
+`;

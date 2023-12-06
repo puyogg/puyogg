@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "allowJs": true,
+  },
+  "include": [
+    ".eslintrc.cjs",
+    "babel.config.mjs",
+    "vitest.unit.config.mts"
+  ],
+  "exclude": []
+}

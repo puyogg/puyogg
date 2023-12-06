@@ -1,0 +1,33 @@
+version: "3"
+services:
+  # ts-db-template:
+  #   image: postgres:16
+  #   ports:
+  #     - 35432:5432
+  #   environment:
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: db
+  #   volumes:
+  #     - ts-db-template-volume:/var/lib/postgresql/data
+
+  ts-db-template-test:
+    image: postgres:16
+    ports:
+      - 35434:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+
+  puyoquest-db:
+    image: postgres:16
+    ports:
+      - 35433:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    volumes:
+      - puyoquest-db-volume:/var/lib/postgresql/data
+
+volumes:
+  ts-db-template-volume:
+  puyoquest-db-volume:

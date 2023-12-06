@@ -1,0 +1,15 @@
+diff --git a/package.json b/package.json
+index 48ee1fd679e2b75abd221613c856d8520a1e41ed..18fd4c398bb0c9cc19438e4e945edf971bd590ca 100644
+--- a/package.json
++++ b/package.json
+@@ -3,6 +3,10 @@
+   "description": "Fixes stack traces for files with source maps",
+   "version": "0.5.21",
+   "main": "./source-map-support.js",
++  "exports": {
++    ".": "./source-map-support.js",
++    "./register": "./register.js"
++  },
+   "scripts": {
+     "build": "node build.js",
+     "serve-tests": "http-server -p 1336",

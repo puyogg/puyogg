@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index ffa151c946e813999b89ca5bdd4571995c3612ab..7381af274b7fa28776e56dd1936cf12d998f366a 100644
+--- a/package.json
++++ b/package.json
+@@ -10,6 +10,7 @@
+     "LICENSE"
+   ],
+   "type": "commonjs",
++  "main": "./dist/index.js",
+   "exports": {
+     ".": {
+       "types": "./dist/index.d.ts",
