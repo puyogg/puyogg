@@ -19,14 +19,15 @@ export const OrderCreate = Order.omit({
 });
 
 const OrderId = Order.pick({ id: true });
+type OrderId = z.infer<typeof OrderId>;
 
 export class OrderModel extends Model<typeof Order, typeof OrderCreate> {
   constructor(sql: Sql) {
     super(sql, 'order', Order, 'id');
   }
 
-  async findByQuantity(quantity: number): Promise<z.infer<typeof OrderId>[]> {
-    const result = await this.sql<z.infer<typeof OrderId>[]>`
+  async findByQuantity(quantity: number): Promise<OrderId[]> {
+    const result = await this.sql<OrderId[]>`
       SELECT id
       FROM ${this.sql(this.tableName)}
       WHERE quantity = ${quantity}

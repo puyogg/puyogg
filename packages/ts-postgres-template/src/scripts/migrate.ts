@@ -54,7 +54,10 @@ const main = async () => {
 
     const files = fs
       .readdirSync(path.resolve(__dirname, '../migrations'))
-      .filter((file) => file.endsWith('.ts'))
+      .filter((file) => {
+        const extension = file.substring(file.indexOf('.'));
+        return extension === '.js';
+      })
       .sort((a, b) => a.localeCompare(b));
 
     const pastMigrations = await fetchPastMigrationNames();

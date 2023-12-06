@@ -29,7 +29,7 @@
     "test:int": "vitest --config vitest.int.config.mts",
     "test:int-watch": "pnpm test:int --watch",
     "new-migration": "tsx src/scripts/new-migration.ts",
-    "migrate": "tsx src/scripts/migrate.ts"
+    "migrate": "node esm/scripts/migrate.js"
   },
   "keywords": [],
   "author": "",
