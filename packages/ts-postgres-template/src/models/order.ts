@@ -17,6 +17,7 @@ export const OrderCreate = Order.omit({
   createdAt: true,
   updatedAt: true,
 });
+export type OrderCreate = z.infer<typeof OrderCreate>;
 
 const OrderId = Order.pick({ id: true });
 type OrderId = z.infer<typeof OrderId>;

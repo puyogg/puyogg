@@ -17,6 +17,7 @@ export const CustomerCreate = Customer.omit({
   createdAt: true,
   updatedAt: true,
 });
+export type CustomerCreate = z.infer<typeof CustomerCreate>;
 
 export class CustomerModel extends Model<typeof Customer, typeof CustomerCreate> {
   constructor(sql: Sql) {

@@ -1,9 +1,7 @@
 import { Sql } from 'postgres';
-import { connectTestDb } from '../db.js';
-import { afterAll, beforeAll, afterEach, describe, expect, test } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 import { z } from 'zod';
 import { Model } from './model.js';
-import { setupTestDb } from '../test-utils/setup-test-db.js';
 
 const Sample = z.object({
   id: z.string().uuid(),
@@ -23,16 +21,12 @@ class SampleModel extends Model<typeof Sample, typeof SampleCreate> {
 }
 
 describe('Base DB Model', () => {
-  let sql: Sql;
   let sampleModel: SampleModel;
 
-  beforeAll(async () => {
-    const dbName = await setupTestDb();
-    ({ sql } = connectTestDb(dbName));
-
+  beforeEach(async ({ sql }) => {
     await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-    await sql`CREATE TABLE sample (
+    await sql`CREATE TABLE IF NOT EXISTS sample (
       id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
       name text NOT NULL,
       created_at timestamptz NOT NULL DEFAULT NOW()
@@ -41,11 +35,7 @@ describe('Base DB Model', () => {
     sampleModel = new SampleModel(sql);
   });
 
-  afterAll(async () => {
-    await sql.end();
-  });
-
-  afterEach(async () => {
+  afterEach(async ({ sql }) => {
     await sql`TRUNCATE sample`;
   });
 

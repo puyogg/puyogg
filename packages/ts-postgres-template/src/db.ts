@@ -1,9 +1,12 @@
 import postgres from 'postgres';
 import { initModels } from './models/init.js';
 
-export { Models } from './models/init.js';
+export type { Models } from './models/init.js';
+export type { Sql } from 'postgres';
 
-export const Db = (config: postgres.Options<Record<string, postgres.PostgresType>>) => {
+export type Config = postgres.Options<Record<string, postgres.PostgresType>>;
+
+export const Db = (config: Config) => {
   const sql = postgres({
     transform: postgres.camel,
     ...config,
@@ -17,26 +20,14 @@ export const Db = (config: postgres.Options<Record<string, postgres.PostgresType
   };
 };
 
-export const connect = () => {
+export const connect = (config?: Partial<Config>) => {
   return Db({
     transform: postgres.camel,
     onnotice: () => undefined,
-    host: process.env.POSTGRES_HOST ?? '0.0.0.0',
-    port: parseInt(process.env.POSTGRES_PORT ?? '5432', 10),
-    user: process.env.POSTGRES_USER ?? 'postgres',
-    database: process.env.POSTGRES_DBNAME ?? 'db',
-    password: process.env.POSTGRES_PASSWORD ?? 'password',
-  });
-};
-
-export const connectTestDb = (dbName: string) => {
-  return Db({
-    transform: postgres.camel,
-    onnotice: () => undefined,
-    host: process.env.POSTGRES_HOST ?? '0.0.0.0',
-    port: parseInt(process.env.POSTGRES_PORT ?? '5432', 10),
-    user: process.env.POSTGRES_USER ?? 'postgres',
-    database: dbName,
-    password: process.env.POSTGRES_PASSWORD ?? 'password',
+    host: config?.host ?? process.env.POSTGRES_HOST ?? '0.0.0.0',
+    port: config?.port ?? parseInt(process.env.POSTGRES_PORT ?? '5432', 10),
+    user: config?.user ?? process.env.POSTGRES_USER ?? 'postgres',
+    database: config?.database ?? process.env.POSTGRES_DBNAME ?? 'db',
+    password: config?.password ?? process.env.POSTGRES_PASSWORD ?? 'password',
   });
 };
