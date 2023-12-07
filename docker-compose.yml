@@ -7,6 +7,11 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - ts-postgres-template-volume:/var/lib/postgresql/data
   ts-postgres-template-test:
@@ -16,15 +21,35 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: db
-  puyoquest-db:
-    image: postgres:16
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  ts-fastify-template:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile.node
+      args:
+        - NODE_VERSION=20.10.0
+        - WORKDIR=${PWD}
+    command: pnpm --filter "@puyogg/ts-fastify-template" start:dev
+    depends_on:
+      ts-postgres-template:
+        condition: service_healthy
+    env_file:
+      - ./services/ts-fastify-template/.env
     ports:
-      - 35433:5432
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db
-    volumes:
-      - puyoquest-db-volume:/var/lib/postgresql/data
+      - 3000:3000 # api
+      - 9229:9229 # api debug
+      - 9230:9230 # test debug
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: ${PWD}
+        - action: rebuild
+          path: pnpm-lock.yaml
 
 volumes:
   ts-postgres-template-volume:

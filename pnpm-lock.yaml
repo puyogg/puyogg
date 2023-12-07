@@ -23,6 +23,9 @@ patchedDependencies:
   source-map-support@0.5.21:
     hash: bnvuz5lnlmkpvro6cnps75dmgm
     path: patches/source-map-support@0.5.21.patch
+  vitest@1.0.0-beta.5:
+    hash: of7xsabz6oyvoth6n7kb2q3he4
+    path: patches/vitest@1.0.0-beta.5.patch
 
 importers:
 
@@ -94,7 +97,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(@types/node@20.10.3)
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@20.10.3)
 
   packages/ts-lib-template:
     dependencies:
@@ -164,7 +167,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(@types/node@18.18.10)
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@18.18.10)
 
   packages/ts-postgres-template:
     dependencies:
@@ -246,7 +249,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(@types/node@20.10.3)
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@20.10.3)
 
   services/discord-bot-template:
     dependencies:
@@ -310,7 +313,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(@types/node@18.18.10)
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@18.18.10)
 
   services/ts-fastify-template:
     dependencies:
@@ -395,7 +398,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(@types/node@18.18.10)
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@18.18.10)
 
 packages:
 
@@ -6196,7 +6199,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.0.0-beta.5(@types/node@18.18.10):
+  /vitest@1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@18.18.10):
     resolution: {integrity: sha512-wmrGmXMKysR+JBvIwy0COgLrRSsZTR00dN+IpWBxGC4ACF5Mt/uYyrPLJZ0ixK4P3bxI16vd92JXMsuGnm9gQQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6252,8 +6255,9 @@ packages:
       - supports-color
       - terser
     dev: true
+    patched: true
 
-  /vitest@1.0.0-beta.5(@types/node@20.10.3):
+  /vitest@1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@20.10.3):
     resolution: {integrity: sha512-wmrGmXMKysR+JBvIwy0COgLrRSsZTR00dN+IpWBxGC4ACF5Mt/uYyrPLJZ0ixK4P3bxI16vd92JXMsuGnm9gQQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6309,6 +6313,7 @@ packages:
       - supports-color
       - terser
     dev: true
+    patched: true
 
   /wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}

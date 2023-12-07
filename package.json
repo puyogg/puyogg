@@ -10,6 +10,10 @@
     "new-api": "ts-fastify-template",
     "new-db": "ts-postgres-template"
   },
+  "engines": {
+    "node": "^20",
+    "pnpm": "^8"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -27,7 +31,8 @@
       "@typescript-eslint/scope-manager@6.11.0": "patches/@typescript-eslint__scope-manager@6.11.0.patch",
       "@typescript-eslint/typescript-estree@6.11.0": "patches/@typescript-eslint__typescript-estree@6.11.0.patch",
       "@typescript-eslint/visitor-keys@6.11.0": "patches/@typescript-eslint__visitor-keys@6.11.0.patch",
-      "source-map-support@0.5.21": "patches/source-map-support@0.5.21.patch"
+      "source-map-support@0.5.21": "patches/source-map-support@0.5.21.patch",
+      "vitest@1.0.0-beta.5": "patches/vitest@1.0.0-beta.5.patch"
     }
   }
 }

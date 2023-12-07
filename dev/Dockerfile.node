@@ -1,0 +1,17 @@
+ARG NODE_VERSION
+
+FROM node:${NODE_VERSION}
+
+ARG WORKDIR=/app
+WORKDIR ${WORKDIR}
+
+RUN npm install -g pnpm@8
+
+COPY .npmrc pnpm-lock.yaml .pnpmfile.cjs ./
+
+COPY patches patches
+
+RUN pnpm fetch
+
+COPY . .
+RUN pnpm install -r --offline

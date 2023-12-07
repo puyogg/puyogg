@@ -25,6 +25,7 @@
     "test:unit-watch": "pnpm test:unit --watch",
     "test:int": "LOG_LEVEL=warn vitest --config vitest.int.config.mts",
     "test:int-watch": "pnpm test:int --watch",
+    "test:int-watch-debug": "pnpm test:int-watch --inspect-brk --pool threads --poolOptions.threads.singleThread",
     "start:dev": "tsx watch ./src/index.ts"
   },
   "repository": {

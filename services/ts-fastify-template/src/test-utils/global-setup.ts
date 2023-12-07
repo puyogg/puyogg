@@ -3,7 +3,7 @@ import { connect } from '@puyogg/ts-postgres-template';
 export const adminDbName = 'admin_db';
 
 export async function setup() {
-  const { sql } = connect();
+  const { sql } = connect({ host: process.env.POSTGRES_HOST_TEST });
 
   await sql`DROP DATABASE IF EXISTS ${sql(adminDbName)}`;
   await sql`CREATE DATABASE ${sql(adminDbName)}`;

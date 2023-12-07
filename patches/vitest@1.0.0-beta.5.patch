@@ -1,0 +1,13 @@
+diff --git a/dist/vendor/inspector.lFAeuaAt.js b/dist/vendor/inspector.lFAeuaAt.js
+index ac47f1598a3a835c99ae5b273ad5a8598bce8d0f..2906aa87f99b38293903a91d334ebdf73253ba85 100644
+--- a/dist/vendor/inspector.lFAeuaAt.js
++++ b/dist/vendor/inspector.lFAeuaAt.js
+@@ -9,7 +9,7 @@ function setupInspect(config) {
+     inspector = __require("node:inspector");
+     const isOpen = inspector.url() !== void 0;
+     if (!isOpen) {
+-      inspector.open();
++      inspector.open(parseInt(process.env.VITEST_DEBUG_PORT ?? '9229', 10), '0.0.0.0');
+       if (config.inspectBrk)
+         inspector.waitForDebugger();
+     }

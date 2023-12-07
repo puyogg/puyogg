@@ -11,7 +11,10 @@ let models: Models;
 let app: App;
 
 beforeAll(async () => {
-  const { sql: adminSql } = connect({ database: adminDbName });
+  const { sql: adminSql } = connect({
+    host: process.env.POSTGRES_HOST_TEST,
+    database: adminDbName,
+  });
 
   // Recreate test db with randomized name, "test_abcdefg123"
   await adminSql`DROP DATABASE IF EXISTS ${adminSql(dbName)}`;
@@ -20,13 +23,19 @@ beforeAll(async () => {
   )}`;
   await adminSql.end();
 
-  ({ sql, models, app } = await initApp(dbName));
+  ({ sql, models, app } = await initApp({
+    host: process.env.POSTGRES_HOST_TEST,
+    database: dbName,
+  }));
 });
 
 afterAll(async () => {
   await sql.end();
 
-  const { sql: adminSql } = connect({ database: adminDbName });
+  const { sql: adminSql } = connect({
+    host: process.env.POSTGRES_HOST_TEST,
+    database: adminDbName,
+  });
 
   // Destroy randomized test db after test file is done
   await adminSql`DROP DATABASE IF EXISTS ${adminSql(dbName)}`;
