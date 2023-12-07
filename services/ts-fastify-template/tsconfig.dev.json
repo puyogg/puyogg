@@ -8,7 +8,8 @@
   "include": [
     ".eslintrc.cjs",
     "babel.config.mjs",
-    "vitest.unit.config.mts"
+    "vitest.unit.config.mts",
+    "vitest.int.config.mts"
   ],
   "exclude": []
 }

@@ -320,6 +320,9 @@ importers:
       '@fastify/swagger-ui':
         specifier: ^1.10.1
         version: 1.10.1
+      '@puyogg/ts-postgres-template':
+        specifier: workspace:^
+        version: link:../../packages/ts-postgres-template
       '@types/lodash':
         specifier: ^4.14.201
         version: 4.14.201

@@ -1,16 +1,7 @@
-import { describe, beforeAll, afterAll, expect, test } from 'vitest';
-import { app, initApp } from '../app.js';
+import { describe, expect, test } from 'vitest';
 
 describe('/v1/hello', () => {
-  beforeAll(async () => {
-    await initApp();
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
-
-  test('return hello', async () => {
+  test('return hello', async ({ app }) => {
     const res = await app.inject({
       method: 'GET',
       url: '/v1/hello',

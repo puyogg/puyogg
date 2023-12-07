@@ -1,16 +1,7 @@
-import { describe, beforeAll, afterAll, expect, test } from 'vitest';
-import { app, initApp } from '../app.js';
+import { describe, expect, test } from 'vitest';
 
 describe('/v1/add', () => {
-  beforeAll(async () => {
-    await initApp();
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
-
-  test('3 + 6', async () => {
+  test('3 + 6', async ({ app }) => {
     const res = await app.inject({
       method: 'POST',
       url: '/v1/add',
@@ -20,6 +11,6 @@ describe('/v1/add', () => {
       },
     });
 
-    expect(res.body).toEqual('9');
+    expect(res.json()).toEqual(9);
   });
 });
