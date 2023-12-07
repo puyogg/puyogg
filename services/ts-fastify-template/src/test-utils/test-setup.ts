@@ -13,11 +13,11 @@ let app: App;
 beforeAll(async () => {
   const { sql: adminSql } = connect({ database: adminDbName });
 
+  // Recreate test db with randomized name, "test_abcdefg123"
   await adminSql`DROP DATABASE IF EXISTS ${adminSql(dbName)}`;
   await adminSql`CREATE DATABASE ${adminSql(dbName)} TEMPLATE ${adminSql(
     process.env.POSTGRES_DBNAME ?? 'db',
   )}`;
-
   await adminSql.end();
 
   ({ sql, models, app } = await initApp(dbName));
@@ -28,13 +28,14 @@ afterAll(async () => {
 
   const { sql: adminSql } = connect({ database: adminDbName });
 
+  // Destroy randomized test db after test file is done
   await adminSql`DROP DATABASE IF EXISTS ${adminSql(dbName)}`;
   await adminSql.end();
 
   await app.close();
-  await sql.end();
 });
 
+// Enable type-safe usage of augmented fixtures
 declare module 'vitest' {
   export interface TestContext {
     sql: Sql;
@@ -43,6 +44,7 @@ declare module 'vitest' {
   }
 }
 
+// Also enables the augmented context to be used in test()
 beforeEach((context) => {
   context.sql = sql;
   context.models = models;
