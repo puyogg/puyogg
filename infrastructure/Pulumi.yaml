@@ -1,0 +1,6 @@
+name: infrastructure
+runtime:
+  name: nodejs
+  options:
+    typescript: false
+description: A minimal AWS TypeScript Pulumi program

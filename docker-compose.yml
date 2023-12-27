@@ -50,6 +50,18 @@ services:
           target: ${PWD}
         - action: rebuild
           path: pnpm-lock.yaml
+  puyoquest-db:
+    
+  yotarou:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile.node
+      args:
+        - NODE_VERSION=20.10.0
+        - WORKDIR=${PWD}
+    command: pnpm --filter "@puyogg/yotarou" start:dev
+    depends_on:
+
 
 volumes:
   ts-postgres-template-volume:

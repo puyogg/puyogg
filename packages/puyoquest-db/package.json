@@ -1,0 +1,79 @@
+{
+  "name": "@puyogg/puyoquest-db",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./cjs/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    },
+    "./infra": {
+      "import": "./infra/index.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puyogg/puyogg.git",
+    "directory": "packages/puyoquest-db"
+  },
+  "scripts": {
+    "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm && rm -rf cjs",
+    "format": "prettier --write ./src",
+    "format-check": "prettier --check ./src",
+    "lint": "eslint src",
+    "lint-fix": "eslint --fix src",
+    "tsc:esm": "tsc",
+    "tsc:cjs": "tsc --outDir cjs",
+    "typecheck": "tsc",
+    "babel:esm": "BABEL_ENV=esm babel src --out-dir esm --extensions '.ts'",
+    "babel:cjs": "mkdir -p cjs && echo '{\"type\": \"commonjs\"}' > cjs/package.json && BABEL_ENV=cjs babel src --out-dir cjs --extensions '.ts'",
+    "build:esm": "pnpm tsc:esm && pnpm babel:esm",
+    "watch:esm": "concurrently \"pnpm tsc:esm --watch --preserveWatchOutput\" \"pnpm babel:esm --watch\"",
+    "build:cjs": "pnpm tsc:cjs && pnpm babel:cjs",
+    "watch:cjs": "concurrently \"pnpm tsc:cjs --watch --preserveWatchOutput\" \"pnpm babel:cjs --watch\"",
+    "build": "concurrently \"pnpm build:cjs\" \"pnpm build:esm\"",
+    "test:unit": "vitest --config vitest.unit.config.mts",
+    "test:unit-watch": "pnpm test:unit --watch",
+    "test:int": "vitest --config vitest.int.config.mts",
+    "test:int-watch": "pnpm test:int --watch",
+    "new-migration": "tsx src/scripts/new-migration.ts",
+    "migrate": "node esm/scripts/migrate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "postgres": "^3.4.3",
+    "source-map-support": "^0.5.21",
+    "yaml": "^2.3.4",
+    "yargs": "^17.7.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@pulumi/aws": "^6.17.0",
+    "@pulumi/awsx": "^2.4.0",
+    "@types/babel__core": "^7.20.4",
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^20",
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/utils": "^6.11.0",
+    "babel-plugin-source-map-support": "^2.2.0",
+    "babel-plugin-transform-import-meta": "^2.2.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "tsx": "^4.2.0",
+    "typescript": "^5.2.2",
+    "vitest": "1.0.0-beta.5"
+  }
+}

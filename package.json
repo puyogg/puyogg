@@ -32,7 +32,8 @@
       "@typescript-eslint/typescript-estree@6.11.0": "patches/@typescript-eslint__typescript-estree@6.11.0.patch",
       "@typescript-eslint/visitor-keys@6.11.0": "patches/@typescript-eslint__visitor-keys@6.11.0.patch",
       "source-map-support@0.5.21": "patches/source-map-support@0.5.21.patch",
-      "vitest@1.0.0-beta.5": "patches/vitest@1.0.0-beta.5.patch"
+      "vitest@1.0.0-beta.5": "patches/vitest@1.0.0-beta.5.patch",
+      "long@5.2.3": "patches/long@5.2.3.patch"
     }
   }
 }

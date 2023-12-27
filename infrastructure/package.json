@@ -1,0 +1,35 @@
+{
+  "name": "@puyogg/infrastructure",
+  "type": "module",
+  "main": "./esm/index.js",
+  "scripts": {
+    "tsc:esm": "tsc",
+    "babel:esm": "BABEL_ENV=esm babel src --out-dir esm --extensions '.ts'",
+    "build:esm": "pnpm tsc:esm && pnpm babel:esm",
+    "watch:esm": "concurrently \"pnpm tsc:esm --watch --preserveWatchOutput\" \"pnpm babel:esm --watch\"",
+    "build": "pnpm build:esm"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/babel__core": "^7.20.4",
+    "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/utils": "^6.11.0",
+    "babel-plugin-source-map-support": "^2.2.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@pulumi/pulumi": "^3.99.0",
+    "@pulumi/aws": "^6.17.0",
+    "@pulumi/awsx": "^2.4.0",
+    "@puyogg/puyoquest-db": "workspace:^"
+  }
+}

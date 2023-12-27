@@ -7,3 +7,5 @@ dist
 .env
 /*/*/esm
 /*/*/cjs
+.env.*
+!.env.*.example
