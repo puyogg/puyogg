@@ -49,11 +49,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21",
     "postgres": "^3.4.3",
     "source-map-support": "^0.5.21",
-    "yaml": "^2.3.4",
-    "yargs": "^17.7.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -64,9 +61,7 @@
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
     "@types/babel__core": "^7.20.4",
-    "@types/lodash": "^4.14.201",
     "@types/node": "^20",
-    "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "@typescript-eslint/utils": "^6.11.0",
