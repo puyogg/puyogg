@@ -2,7 +2,6 @@
   "name": "@puyogg/puyoquest-api",
   "version": "0.1.0",
   "type": "module",
-  "bin": "./esm/template/clone.js",
   "main": "./cjs/index.js",
   "exports": {
     ".": {
