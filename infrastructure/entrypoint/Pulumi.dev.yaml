@@ -1,2 +1,3 @@
 config:
   aws:region: us-east-1
+  AWS_ACCOUNT_ID: 977592315709

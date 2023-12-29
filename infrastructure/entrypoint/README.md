@@ -1,4 +1,4 @@
-# @puyogg/infrastructure
+# @puyogg/infra-entrypoint
 
 The primary Pulumi entrypoint. This monorepo uses a single "Pulumi project" with "stacks" for dev and prod.
 
@@ -36,6 +36,6 @@ pnpm --filter @puyogg/infrastructure... --no-sort --workspace-concurrency Infini
 - `...` suffix: Matches the current package and its workspace dependencies https://pnpm.io/filtering#--filter-package_name-1
 - `--no-sort`: By default, pnpm waits for successful exit codes in parent packages before executing the command in dependents. This lets them all run at once. This is also why you need an initial build.
 
-## IAM Users
+## Future work
 
-IAM Users are made in the puyogg dev AWS account.
+Maybe split into multiple pulumi projects? But I haven't figured out yet the logistics of running multiple `pulumi up` and `pulumi preview` in GitHub Actions.

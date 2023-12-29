@@ -41,7 +41,7 @@ importers:
         specifier: ^0.5.21
         version: 0.5.21(patch_hash=bnvuz5lnlmkpvro6cnps75dmgm)
 
-  infrastructure:
+  infrastructure/entrypoint:
     dependencies:
       '@pulumi/aws':
         specifier: ^6.17.0
@@ -54,10 +54,10 @@ importers:
         version: 3.99.0
       '@puyogg/puyoquest-api':
         specifier: workspace:^
-        version: link:../services/puyoquest-api
+        version: link:../../services/puyoquest-api
       '@puyogg/puyoquest-db':
         specifier: workspace:^
-        version: link:../packages/puyoquest-db
+        version: link:../../packages/puyoquest-db
     devDependencies:
       '@babel/cli':
         specifier: ^7.23.0
@@ -107,21 +107,12 @@ importers:
 
   packages/puyoquest-db:
     dependencies:
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21(patch_hash=bnvuz5lnlmkpvro6cnps75dmgm)
-      yaml:
-        specifier: ^2.3.4
-        version: 2.3.4
-      yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -147,15 +138,9 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.4
         version: 7.20.4
-      '@types/lodash':
-        specifier: ^4.14.201
-        version: 4.14.201
       '@types/node':
         specifier: ^20
         version: 20.10.3
-      '@types/yargs':
-        specifier: ^17.0.32
-        version: 17.0.32
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.11.0
         version: 6.11.0(@typescript-eslint/parser@6.11.0)(eslint@8.54.0)(typescript@5.2.2)

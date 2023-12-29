@@ -1,7 +1,12 @@
 {
-  "name": "@puyogg/infrastructure",
+  "name": "@puyogg/infra-entrypoint",
   "type": "module",
   "main": "./esm/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puyogg/puyogg.git",
+    "directory": "infrastructure/infra-entrypoint"
+  },
   "scripts": {
     "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm",
     "format": "prettier --write ./src",
