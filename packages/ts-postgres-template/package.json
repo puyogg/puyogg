@@ -2,7 +2,6 @@
   "name": "@puyogg/ts-postgres-template",
   "version": "0.1.0",
   "description": "",
-  "bin": "./esm/bin.js",
   "main": "./cjs/index.js",
   "type": "module",
   "exports": {

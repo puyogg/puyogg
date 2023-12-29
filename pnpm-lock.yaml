@@ -37,15 +37,6 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.2
         version: 2.26.2
-      '@puyogg/ts-fastify-template':
-        specifier: workspace:^
-        version: link:services/ts-fastify-template
-      '@puyogg/ts-lib-template':
-        specifier: workspace:^
-        version: link:packages/ts-lib-template
-      '@puyogg/ts-postgres-template':
-        specifier: workspace:^
-        version: link:packages/ts-postgres-template
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21(patch_hash=bnvuz5lnlmkpvro6cnps75dmgm)
@@ -61,6 +52,9 @@ importers:
       '@pulumi/pulumi':
         specifier: ^3.99.0
         version: 3.99.0
+      '@puyogg/puyoquest-api':
+        specifier: workspace:^
+        version: link:../services/puyoquest-api
       '@puyogg/puyoquest-db':
         specifier: workspace:^
         version: link:../packages/puyoquest-db
@@ -466,6 +460,94 @@ importers:
       vitest:
         specifier: 1.0.0-beta.5
         version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@18.18.10)
+
+  services/puyoquest-api:
+    dependencies:
+      '@fastify/swagger':
+        specifier: ^8.12.0
+        version: 8.12.0
+      '@fastify/swagger-ui':
+        specifier: ^1.10.1
+        version: 1.10.1
+      '@puyogg/puyoquest-db':
+        specifier: workspace:^
+        version: link:../../packages/puyoquest-db
+      fastify:
+        specifier: ^4.24.3
+        version: 4.24.3
+      fastify-type-provider-zod:
+        specifier: ^1.1.9
+        version: 1.1.9(fastify@4.24.3)(zod@3.22.4)
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21(patch_hash=bnvuz5lnlmkpvro6cnps75dmgm)
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@babel/cli':
+        specifier: ^7.23.0
+        version: 7.23.0(@babel/core@7.23.3)
+      '@babel/core':
+        specifier: ^7.23.3
+        version: 7.23.3
+      '@babel/preset-env':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
+      '@pulumi/aws':
+        specifier: ^6.17.0
+        version: 6.17.0
+      '@pulumi/awsx':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@pulumi/pulumi':
+        specifier: ^3.99.0
+        version: 3.99.0
+      '@types/babel__core':
+        specifier: ^7.20.4
+        version: 7.20.4
+      '@types/node':
+        specifier: ^20
+        version: 20.10.3
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.11.0
+        version: 6.11.0(@typescript-eslint/parser@6.11.0)(eslint@8.54.0)(typescript@5.2.2)
+      '@typescript-eslint/parser':
+        specifier: ^6.11.0
+        version: 6.11.0(eslint@8.54.0)(typescript@5.2.2)
+      '@typescript-eslint/utils':
+        specifier: ^6.11.0
+        version: 6.11.0(patch_hash=z57gkyl7ma53zrsqlgwsl7vgri)(eslint@8.54.0)(typescript@5.2.2)
+      babel-plugin-source-map-support:
+        specifier: ^2.2.0
+        version: 2.2.0
+      babel-plugin-transform-import-meta:
+        specifier: ^2.2.1
+        version: 2.2.1(@babel/core@7.23.3)
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      eslint:
+        specifier: ^8.54.0
+        version: 8.54.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.54.0)
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+      tsx:
+        specifier: ^4.2.0
+        version: 4.2.0
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+      vitest:
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@20.10.3)
 
   services/ts-fastify-template:
     dependencies:

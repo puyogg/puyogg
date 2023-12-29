@@ -2,7 +2,6 @@
   "name": "@puyogg/ts-fastify-template",
   "version": "0.1.0",
   "type": "module",
-  "bin": "./esm/template/clone.js",
   "main": "./cjs/index.js",
   "exports": {
     "require": "./cjs/index.js",

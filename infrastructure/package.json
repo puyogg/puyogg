@@ -3,6 +3,11 @@
   "type": "module",
   "main": "./esm/index.js",
   "scripts": {
+    "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm",
+    "format": "prettier --write ./src",
+    "format-check": "prettier --check ./src",
+    "lint": "eslint src",
+    "lint-fix": "eslint --fix src",
     "tsc:esm": "tsc",
     "babel:esm": "BABEL_ENV=esm babel src --out-dir esm --extensions '.ts'",
     "build:esm": "pnpm tsc:esm && pnpm babel:esm",
@@ -27,9 +32,10 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@pulumi/pulumi": "^3.99.0",
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
+    "@pulumi/pulumi": "^3.99.0",
+    "@puyogg/puyoquest-api": "workspace:^",
     "@puyogg/puyoquest-db": "workspace:^"
   }
 }
