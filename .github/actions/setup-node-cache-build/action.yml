@@ -1,0 +1,35 @@
+name: Setup Node, pnpm, and build
+
+description: Setup Node, pnpm, and build
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        registry-url: https://npm.pkg.github.com
+        cache: pnpm
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    - name: Cache build
+      id: cache_build
+      uses: actions/cache@v3
+      with:
+        path: |
+            infrastructure/esm
+            packages/*/dist
+            packages/*/esm
+            packages/*/cjs
+            services/*/dist
+            services/*/esm
+            services/*/cjs
+        key: build-${{ github.run_id }}-${{ github.run_attempt }}
+    - name: Install
+      shell: bash
+      run: pnpm install
+    - name: Build
+      shell: bash
+      if: steps.cache_build.outputs.cache-hit != 'true'
+      run: pnpm -r build
