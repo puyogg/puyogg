@@ -18,6 +18,10 @@ on:
             "@puyogg/ts-fastify-template"
           ]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   # test_mergeability:
   #   name: Test Mergeability
@@ -29,6 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID_DEV }}:role/GitHubActionsAwsOIDCConnect
+          aws-region: us-east-1
       - uses: ./.github/actions/setup-node-cache-build
       - uses: pulumi/actions@v4
         with:
