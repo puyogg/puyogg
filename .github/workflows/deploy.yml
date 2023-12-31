@@ -34,5 +34,6 @@ jobs:
         with:
           command: up
           stack-name: puyogg/infrastructure/dev
+          work-dir: ./infrastructure/entrypoint
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
