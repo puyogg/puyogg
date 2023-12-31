@@ -1,23 +1,16 @@
 version: "3"
 services:
+  node-dev:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile.node
+      args:
+        - NODE_VERSION=20.10.0
+        - WORKDIR=${PWD}
   ts-postgres-template:
     image: postgres:16
     ports:
       - 35432:5432
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - ts-postgres-template-volume:/var/lib/postgresql/data
-  ts-postgres-template-test:
-    image: postgres:16
-    ports:
-      - 35434:5432
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: db
@@ -51,7 +44,26 @@ services:
         - action: rebuild
           path: pnpm-lock.yaml
   puyoquest-db:
-    
+    image: postgres:16
+    ports:
+      - 35433:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - puyoquest-db-volume:/var/lib/postgresql/data
+  puyoquest-api:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile.node
+      args:
+        - NODE_VERSION=20.10.0
+        - WORKDIR=${PWD}
   yotarou:
     build:
       context: .
@@ -60,8 +72,7 @@ services:
         - NODE_VERSION=20.10.0
         - WORKDIR=${PWD}
     command: pnpm --filter "@puyogg/yotarou" start:dev
-    depends_on:
-
+    # depends_on:
 
 volumes:
   ts-postgres-template-volume:

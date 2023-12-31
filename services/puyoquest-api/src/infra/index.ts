@@ -29,25 +29,24 @@ const repo = new awsx.ecr.Repository('ppq-api-ecr', {
 // Deploy an ECS Service on Fargate to host the application container.
 // I think this will fail on first run because the image won't exist yet.
 // I plan to manage the image pushes outside of Pulumi.
-const service = new awsx.ecs.FargateService('ppq-api-fg', {
-  cluster: cluster.arn,
-  assignPublicIp: true,
-  taskDefinitionArgs: {
-    container: {
-      name: 'puyoquest-api',
-      image: pulumi.interpolate`${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/puyoquest-api:latest`,
-      cpu: 1024,
-      memory: 512,
-      essential: true,
-      portMappings: [
-        {
-          containerPort: 3000,
-          targetGroup: loadBalancer.defaultTargetGroup,
-        },
-      ],
-    },
-  },
-});
+// const service = new awsx.ecs.FargateService('ppq-api-fg', {
+//   cluster: cluster.arn,
+//   assignPublicIp: true,
+//   taskDefinitionArgs: {
+//     container: {
+//       name: 'puyoquest-api',
+//       image: pulumi.interpolate`${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/puyoquest-api:latest`,
+//       cpu: 1024,
+//       memory: 512,
+//       essential: true,
+//       portMappings: [
+//         {
+//           containerPort: 3000,
+//           targetGroup: loadBalancer.defaultTargetGroup,
+//         },
+//       ],
+//     },
+//   },
+// });
 
 export const url = pulumi.interpolate`http://${loadBalancer.loadBalancer.dnsName}`;
-export const defaultTargetGroup = loadBalancer.defaultTargetGroup;

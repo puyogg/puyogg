@@ -141,6 +141,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.10.3
+      '@types/yargs':
+        specifier: ^17.0.32
+        version: 17.0.32
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.11.0
         version: 6.11.0(@typescript-eslint/parser@6.11.0)(eslint@8.54.0)(typescript@5.2.2)
@@ -177,6 +180,9 @@ importers:
       vitest:
         specifier: 1.0.0-beta.5
         version: 1.0.0-beta.5(patch_hash=of7xsabz6oyvoth6n7kb2q3he4)(@types/node@20.10.3)
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
 
   packages/puyosim-rng:
     dependencies:
