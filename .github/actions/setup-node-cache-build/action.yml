@@ -5,14 +5,14 @@ description: Setup Node, pnpm, and build
 runs:
   using: composite
   steps:
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
     - uses: actions/setup-node@v3
       with:
         node-version: 20
         registry-url: https://npm.pkg.github.com
         cache: pnpm
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 8
     - name: Cache build
       id: cache_build
       uses: actions/cache@v3
