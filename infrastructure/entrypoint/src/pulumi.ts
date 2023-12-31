@@ -51,7 +51,7 @@ const role = new aws.iam.Role('PulumiRole', {
         Principal: {
           AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
         },
-        Action: 'sts:AssumeRole',
+        Action: 'sts:AssumeRoleWithWebIdentity',
       },
     ],
   },
