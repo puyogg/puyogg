@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as aws from '@pulumi/aws';
 
-const provider = new aws.iam.OpenIdConnectProvider('GitHubOIDC', {
+export const provider = new aws.iam.OpenIdConnectProvider('GitHubOIDC', {
   url: 'https://token.actions.githubusercontent.com',
   clientIdLists: ['sts.amazonaws.com'],
   thumbprintLists: [
