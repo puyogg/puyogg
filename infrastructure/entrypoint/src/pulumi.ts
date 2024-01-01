@@ -6,6 +6,7 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as aws from '@pulumi/aws';
 import { AWS_ACCOUNT_ID } from './constants.js';
+import { provider as GitHubOIDCProvider } from './github.js';
 
 const user = new aws.iam.User('cicdUser', {
   name: 'cicd-bot',
@@ -50,8 +51,17 @@ const role = new aws.iam.Role('PulumiRole', {
         Effect: 'Allow',
         Principal: {
           AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
+          Federated: GitHubOIDCProvider.arn,
         },
         Action: 'sts:AssumeRoleWithWebIdentity',
+        Condition: {
+          StringLike: {
+            'token.actions.githubusercontent.com:sub': 'repo:puyogg/puyogg:*',
+          },
+          StringEquals: {
+            'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
+          },
+        },
       },
     ],
   },
