@@ -2,6 +2,7 @@ name: Deploy PuyoQuest API
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   deploy:

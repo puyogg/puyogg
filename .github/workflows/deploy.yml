@@ -30,6 +30,7 @@ jobs:
 
   deploy_infrastructure:
     name: Deploy Infrastructure
+    # needs: test_mergeability
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +50,7 @@ jobs:
 
   get_docker_image_packages:
     name: Get Packages with Docker Images
-    # needs: test_mergeability
+    needs: deploy_infrastructure
     runs-on: ubuntu-latest
     outputs:
       PACKAGES: ${{ steps.buildable_packages.outputs.PACKAGES }}
