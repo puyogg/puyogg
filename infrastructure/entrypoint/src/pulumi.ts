@@ -50,7 +50,7 @@ const role = new aws.iam.Role('PulumiRole', {
       {
         Effect: 'Allow',
         Principal: {
-          AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
+          // AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
           Federated: GitHubOIDCProvider.arn,
         },
         Action: 'sts:AssumeRoleWithWebIdentity',
@@ -77,8 +77,8 @@ const policyAttachments = [
   'arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator',
 ].map((arn) => {
   const name = `PulumiPolicy_${arn.split('/')[1]}`;
-  return new aws.iam.RolePolicyAttachment(name, {
-    role,
+  return new aws.iam.PolicyAttachment(name, {
+    roles: [role],
     policyArn: arn,
   });
 });
