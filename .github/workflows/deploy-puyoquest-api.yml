@@ -1,0 +1,40 @@
+name: Deploy PuyoQuest API
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    name: Login to AWS and load layer cache
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: prepare_docker
+        uses: ./.github/actions/prepare-docker-deploy-node
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          file: ./services/puyoquest-api/Dockerfile
+          tags: puyoquest-api:latest, puyoquest-api:${{ steps.prepare_docker.outputs.GIT_SHA7 }}
+          target: production
+          build-args: |
+            NODE_VERSION=20.10.0
+            WORKDIR=/app
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task_def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: puyoquest-api
+          image: puyoquest-api:${{ steps.prepare_docker.outputs.GIT_SHA7 }}
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task_def.outputs.task-definition }}
+          cluster: ppq-api-cluster
+          service: ppq-api-service
+          wait-for-service-stability: true

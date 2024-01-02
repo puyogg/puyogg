@@ -46,3 +46,21 @@ jobs:
           work-dir: ./infrastructure/entrypoint
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+  get_docker_image_packages:
+    name: Get Packages with Docker Images
+    # needs: test_mergeability
+    runs-on: ubuntu-latest
+    outputs:
+      PACKAGES: ${{ steps.buildable_packages.outputs.PACKAGES }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node-cache-build
+      - id: buildable_packages
+        run: echo "PACKAGES=$(node scripts/get-docker-images.js ${{ inputs.packages }})" >> "$GITHUB_OUTPUT"
+
+  puyoquest-api:
+    needs: get_docker_image_packages
+    if: ${{ contains(fromJSON(needs.get_docker_image_packages.outputs.PACKAGES), '@puyogg/puyoquest-api') }}
+    uses: ./.github/workflows/deploy-puyoquest-api.yml
+    secrets: inherit

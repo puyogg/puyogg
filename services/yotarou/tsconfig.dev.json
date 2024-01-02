@@ -3,12 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "noEmit": true,
-    "allowJs": true,
+    "allowJs": true
   },
-  "include": [
-    ".eslintrc.cjs",
-    "babel.config.mjs",
-    "vitest.unit.config.mts"
-  ],
+  "include": [".eslintrc.cjs", "babel.config.mjs", "vitest.unit.config.mts"],
   "exclude": []
 }

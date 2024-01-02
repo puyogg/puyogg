@@ -12,12 +12,6 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true
   },
-  "include": [
-    "./src/**/*.ts"
-  ],
-  "exclude": [
-    "./esm",
-    "./cjs",
-    "./src/**/*.spec.ts"
-  ]
+  "include": ["./src/**/*.ts"],
+  "exclude": ["./esm", "./cjs", "./src/**/*.spec.ts"]
 }
