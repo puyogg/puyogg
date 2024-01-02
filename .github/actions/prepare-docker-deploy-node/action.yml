@@ -2,6 +2,11 @@ name: Setup Doker Deployment
 
 description: Log into AWS, log Docker into AWS ECR, and setup Docker layer caches.
 
+inputs:
+  AWS_ACCOUNT_ID:
+    description: AWS Account ID
+    required: true
+
 outputs:
   GIT_SHA7:
     description: 7 character SHA of the current commit
@@ -13,7 +18,7 @@ runs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID_DEV }}:role/GitHubActionsAwsOIDCConnect
+        role-to-assume: arn:aws:iam::${{ inputs.AWS_ACCOUNT_ID }}:role/GitHubActionsAwsOIDCConnect
         aws-region: us-east-1
     - name: Login to AWS ECR
       id: login_ecr
