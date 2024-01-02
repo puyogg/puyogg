@@ -3,10 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "noEmit": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": false
   },
-  "include": [
-    "./**/*.ts"
-  ],
+  "include": ["./**/*.ts"],
   "exclude": []
 }

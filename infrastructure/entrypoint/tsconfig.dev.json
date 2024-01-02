@@ -3,11 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "noEmit": true,
-    "allowJs": true,
+    "allowJs": true
   },
-  "include": [
-    ".eslintrc.cjs",
-    "babel.config.mjs"
-  ],
+  "include": [".eslintrc.cjs", "babel.config.mjs"],
   "exclude": []
 }
