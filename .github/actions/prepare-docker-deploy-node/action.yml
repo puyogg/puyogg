@@ -11,6 +11,9 @@ outputs:
   GIT_SHA7:
     description: 7 character SHA of the current commit
     value: ${{ steps.sha_short.outputs.SHA_SHORT }}
+  REGISTRY:
+    description: ECR Registry
+    value: ${{ steps.login_ecr.outputs.registry }}
 
 runs:
   using: composite
