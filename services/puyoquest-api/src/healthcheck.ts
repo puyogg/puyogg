@@ -13,3 +13,16 @@ app.route({
     return reply.send('OK');
   },
 });
+
+app.route({
+  method: 'GET',
+  url: '/',
+  schema: {
+    response: {
+      200: z.string(),
+    },
+  },
+  handler: async (request, reply) => {
+    return reply.send('OK');
+  },
+});
