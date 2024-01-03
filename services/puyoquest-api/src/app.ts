@@ -42,10 +42,10 @@ export const initApp = async (dbConfig?: Partial<Config>) => {
 
   // These have to be dynamically imported AFTER app, sql, and models are initialized globally.
   await import('./healthcheck.js');
-  await import('./v1/index.js');
+  // await import('./v1/index.js');
 
   // Filler request to initialize pool. sql is lazy loaded
-  await sql`SELECT 1`;
+  // await sql`SELECT 1`;
 
   return { sql, models, app };
 };
