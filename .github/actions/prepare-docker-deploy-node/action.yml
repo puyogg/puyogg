@@ -33,7 +33,6 @@ runs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        push: false
         file: ./dev/Dockerfile.node
         tags: puyogg-node:latest
         target: ci
@@ -42,6 +41,7 @@ runs:
         build-args: |
           NODE_VERSION=20.10.0
           WORKDIR=/app
+        load: true
     - name: Set 7 character SHA
       id: sha_short
       shell: bash
