@@ -25,7 +25,7 @@
     "watch:esm": "concurrently \"pnpm tsc:esm --watch --preserveWatchOutput\" \"pnpm babel:esm --watch\"",
     "build:cjs": "pnpm exec tsc --outDir cjs && pnpm babel:cjs",
     "build": "pnpm build:cjs && pnpm build:esm",
-    "unit-test": "vitest --config vitest.unit.config.mts",
+    "unit-test": "vitest --config vitest.unit.config.mts --passWithNoTests",
     "unit-test:watch": "pnpm unit-test --watch",
     "int-test": "LOG_LEVEL=warn vitest --config vitest.int.config.mts",
     "int-test:watch": "pnpm int-test --watch",
