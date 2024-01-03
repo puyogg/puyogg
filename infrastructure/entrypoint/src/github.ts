@@ -35,12 +35,13 @@ const role = new aws.iam.Role('GitHubActionsAwsOIDCConnect', {
   },
 });
 
-const policyAttachments = ['arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser'].map(
-  (arn) => {
-    const name = `GitHub_${arn.split('/')[1]}`;
-    return new aws.iam.PolicyAttachment(name, {
-      roles: [role],
-      policyArn: arn,
-    });
-  },
-);
+const policyAttachments = [
+  'arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser',
+  'arn:aws:iam::aws:policy/AmazonECS_FullAccess',
+].map((arn) => {
+  const name = `GitHub_${arn.split('/')[1]}`;
+  return new aws.iam.PolicyAttachment(name, {
+    roles: [role],
+    policyArn: arn,
+  });
+});
