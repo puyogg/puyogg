@@ -33,7 +33,6 @@ runs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        push: true
         file: ./dev/Dockerfile.node
         tags: puyogg-node:latest
         target: ci
