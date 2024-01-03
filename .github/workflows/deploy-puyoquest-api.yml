@@ -18,18 +18,16 @@ jobs:
         uses: ./.github/actions/prepare-docker-deploy-node
         with:
           AWS_ACCOUNT_ID: ${{ vars.AWS_ACCOUNT_ID_DEV }}
+      - name: Echo prepare Docker outputs
+        run: |
+          echo "${{ steps.prepare_docker.outputs.REGISTRY }}"
+          echo "${{ steps.prepare_docker.outputs.GIT_SHA7 }}"
       - uses: docker/build-push-action@v5
-        env:
-          REGISTRY: ${{ steps.prepare_docker.outputs.REGISTRY }}
-          REPOSITORY: puyoquest-api
-          IMAGE_TAG: ${{ steps.prepare_docker.outputs.GIT_SHA7 }}
-          LATEST_IMAGE: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest
-          SHA_IMAGE: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
         with:
           context: .
           push: true
           file: ./services/puyoquest-api/Dockerfile
-          tags: ${{ env.LATEST_IMAGE }},${{ env.SHA_IMAGE }}
+          tags: ${{ steps.prepare_docker.outputs.REGISTRY }}/puyoquest-api:latest,${{ steps.prepare_docker.outputs.REGISTRY }}/puyoquest-api:${{ steps.prepare_docker.outputs.GIT_SHA7 }}
           target: production
           build-args: |
             NODE_VERSION=20.10.0
