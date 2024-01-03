@@ -41,31 +41,35 @@ const groupPolicy = new aws.iam.GroupPolicy('pulumiStackUpdatersPolicy', {
   },
 });
 
-const role = new aws.iam.Role('PulumiRole', {
-  name: 'PulumiRole',
-  description: 'Pulumi AWS Role for updating stacks',
-  assumeRolePolicy: {
-    Version: '2012-10-17',
-    Statement: [
-      {
-        Effect: 'Allow',
-        Principal: {
-          // AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
-          Federated: GitHubOIDCProvider.arn,
-        },
-        Action: 'sts:AssumeRoleWithWebIdentity',
-        Condition: {
-          StringLike: {
-            'token.actions.githubusercontent.com:sub': 'repo:puyogg/puyogg:*',
+const role = new aws.iam.Role(
+  'PulumiRole',
+  {
+    name: 'PulumiRole',
+    description: 'Pulumi AWS Role for updating stacks',
+    assumeRolePolicy: {
+      Version: '2012-10-17',
+      Statement: [
+        {
+          Effect: 'Allow',
+          Principal: {
+            // AWS: `arn:aws:iam::${AWS_ACCOUNT_ID.PUYOGG_DEV}:root`,
+            Federated: GitHubOIDCProvider.arn,
           },
-          StringEquals: {
-            'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
+          Action: 'sts:AssumeRoleWithWebIdentity',
+          Condition: {
+            StringLike: {
+              'token.actions.githubusercontent.com:sub': 'repo:puyogg/puyogg:*',
+            },
+            StringEquals: {
+              'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
+            },
           },
         },
-      },
-    ],
+      ],
+    },
   },
-});
+  { dependsOn: GitHubOIDCProvider },
+);
 
 const policyAttachments = [
   'arn:aws:iam::aws:policy/AmazonECS_FullAccess',

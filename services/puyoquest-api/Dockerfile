@@ -1,3 +1,4 @@
+# dev and ci stages need to be the same as /dev/Dockerfile.node
 ARG NODE_VERSION
 
 FROM node:${NODE_VERSION} as dev
