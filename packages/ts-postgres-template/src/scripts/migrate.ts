@@ -35,8 +35,9 @@ const executeMigration = async (name: string, migration: Migration) => {
     process.stdout.write('Done.\n');
   } catch (e) {
     console.log('ERROR!');
+    console.error(e);
     if (migration.down) {
-      await migration.down(sql);
+      await migration.down(sql).catch((e) => console.error(e));
     }
 
     throw e;

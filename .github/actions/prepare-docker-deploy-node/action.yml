@@ -1,4 +1,4 @@
-name: Setup Doker Deployment
+name: Setup Docker Deployment
 
 description: Log into AWS, log Docker into AWS ECR, and setup Docker layer caches.
 

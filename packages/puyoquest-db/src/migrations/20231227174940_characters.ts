@@ -14,7 +14,7 @@ export const up = async (sql: Sql) => {
       type1 TEXT,
       type2 TEXT,
       voice_trans TEXT,
-      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )`;
 
     await sql`CREATE INDEX ON character (name)`;
