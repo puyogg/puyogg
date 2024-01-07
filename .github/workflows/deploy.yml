@@ -58,7 +58,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-cache-build
       - id: buildable_packages
-        run: echo "PACKAGES=$(node scripts/get-docker-images.js ${{ inputs.packages }})" >> "$GITHUB_OUTPUT"
+        run: echo "PACKAGES=$(node scripts/get-docker-images.js '${{ inputs.packages }}')" >> "$GITHUB_OUTPUT"
 
   puyoquest-api:
     needs: get_docker_image_packages
