@@ -1,5 +1,13 @@
 # @puyogg/infra-entrypoint
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [4503cd7]
+  - @puyogg/puyoquest-db@0.1.1
+  - @puyogg/puyoquest-api@0.2.1
+
 ## 0.1.0
 
 ### Minor Changes
