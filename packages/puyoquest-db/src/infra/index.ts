@@ -38,7 +38,7 @@ const securityGroup = new aws.ec2.SecurityGroup('puyoquest-db-sg', {
 });
 
 const db = new aws.rds.Instance('puyoquest-db', {
-  dbName: 'puyoquest-db',
+  dbName: 'ppqdb',
   instanceClass: 'db.t4g.micro',
   username: config.requireSecret('PUYOQUEST_DB_USER'),
   password: config.requireSecret('PUYOQUEST_DB_PASSWORD'),

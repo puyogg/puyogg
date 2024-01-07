@@ -27,7 +27,7 @@ export const connect = (config?: Partial<Config>) => {
     host: config?.host ?? process.env.POSTGRES_HOST ?? 'puyoquest-db',
     port: config?.port ?? parseInt(process.env.POSTGRES_PORT ?? '5432', 10),
     user: config?.user ?? process.env.POSTGRES_USER ?? 'postgres',
-    database: config?.database ?? process.env.POSTGRES_DBNAME ?? 'db',
+    database: config?.database ?? process.env.POSTGRES_DBNAME ?? 'ppqdb',
     password: config?.password ?? process.env.POSTGRES_PASSWORD ?? 'password',
   });
 };
