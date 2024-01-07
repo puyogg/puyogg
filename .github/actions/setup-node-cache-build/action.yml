@@ -18,7 +18,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: |
-            infrastructure/esm
+            infrastructure/*/esm
             packages/*/dist
             packages/*/esm
             packages/*/cjs

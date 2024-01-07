@@ -15,7 +15,7 @@ on:
         description: stringified JSON array
         default: >
           [
-            "@puyogg/ts-fastify-template"
+            "@puyogg/puyoquest-api"
           ]
 
 permissions:
