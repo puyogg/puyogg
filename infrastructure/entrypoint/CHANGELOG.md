@@ -1,5 +1,14 @@
 # @puyogg/infra-entrypoint
 
+## 0.1.2
+
+### Patch Changes
+
+- f8b6e7c: Need to make specific db subnet group object
+- Updated dependencies [f8b6e7c]
+  - @puyogg/puyoquest-db@0.1.2
+  - @puyogg/puyoquest-api@0.2.2
+
 ## 0.1.1
 
 ### Patch Changes

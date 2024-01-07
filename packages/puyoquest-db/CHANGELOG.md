@@ -1,5 +1,11 @@
 # @puyogg/puyoquest-db
 
+## 0.1.2
+
+### Patch Changes
+
+- f8b6e7c: Need to make specific db subnet group object
+
 ## 0.1.1
 
 ### Patch Changes
