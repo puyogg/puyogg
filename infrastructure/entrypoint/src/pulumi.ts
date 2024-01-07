@@ -80,6 +80,7 @@ const policyAttachments = [
   'arn:aws:iam::aws:policy/AWSLambda_FullAccess',
   'arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator',
   'arn:aws:iam::aws:policy/AmazonSSMFullAccess',
+  'arn:aws:iam::aws:policy/AmazonEC2FullAccess',
 ].map((arn) => {
   const name = `PulumiPolicy_${arn.split('/')[1]}`;
   return new aws.iam.PolicyAttachment(name, {
