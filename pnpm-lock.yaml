@@ -135,6 +135,9 @@ importers:
       '@pulumi/awsx':
         specifier: ^2.4.0
         version: 2.4.0
+      '@pulumi/pulumi':
+        specifier: ^3.99.0
+        version: 3.99.0
       '@types/babel__core':
         specifier: ^7.20.4
         version: 7.20.4

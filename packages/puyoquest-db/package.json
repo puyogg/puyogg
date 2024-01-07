@@ -60,6 +60,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
+    "@pulumi/pulumi": "^3.99.0",
     "@types/babel__core": "^7.20.4",
     "@types/node": "^20",
     "@types/yargs": "^17.0.32",
