@@ -5,9 +5,10 @@ import { imageCacheBucketName } from '../config.js';
 
 const config = new pulumi.Config();
 
-export const bucket = new aws.s3.Bucket(imageCacheBucketName, {
+const bucket = new aws.s3.Bucket(imageCacheBucketName, {
   bucket: imageCacheBucketName,
 });
+export const bucketName = bucket.bucket;
 
 // a backup of what the allowed IP addresses are
 const allowedIPs = new aws.ssm.Parameter('allowed-IPs', {
@@ -36,7 +37,7 @@ const securityGroup = new aws.ec2.SecurityGroup('puyoquest-db-sg', {
   ],
 });
 
-export const db = new aws.rds.Instance('puyoquest-db', {
+const db = new aws.rds.Instance('puyoquest-db', {
   dbName: 'db',
   instanceClass: 'db.t4g.micro',
   username: config.requireSecret('PUYOQUEST_DB_USER'),
@@ -50,3 +51,4 @@ export const db = new aws.rds.Instance('puyoquest-db', {
   identifier: 'puyoquest-db',
   vpcSecurityGroupIds: [securityGroup.id],
 });
+export const dbAddress = db.address;
