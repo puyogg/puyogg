@@ -1,6 +1,7 @@
 const util = require("node:util");
 const exec = util.promisify(require("node:child_process").exec);
 const fs = require("node:fs/promises");
+const { existsSync } = require("node:fs");
 
 /**
  * Get the absolute paths for the specified workspace packages
@@ -18,7 +19,7 @@ async function getPackagePaths(packageNames) {
 }
 
 /**
- * Filter packages to the ones that have a "build-image" package.json command.
+ * Filter packages to the ones that have a production Dockerfile
  * @param {{
  *  name: string;
  *  version: string;
@@ -31,22 +32,17 @@ async function getPackagePaths(packageNames) {
  * }[]>}
  */
 async function filterContainerizable(packages) {
-  const filtered = (
-    await Promise.all(
-      packages.map(async (package) => {
-        const packageJson = JSON.parse(
-          await fs.readFile(`${package.path}/package.json`)
-        );
-        if (packageJson.scripts["build-image"]) {
-          return {
-            name: package.name,
-            version: package.version,
-            path: package.path,
-          };
-        }
-      })
-    )
-  ).filter((package) => !!package);
+  const filtered = packages
+    .map((package) => {
+      if (existsSync(`${package.path}/Dockerfile`)) {
+        return {
+          name: package.name,
+          version: package.version,
+          path: package.path,
+        };
+      }
+    })
+    .filter((p) => !!p);
 
   return filtered;
 }
