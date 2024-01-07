@@ -30,7 +30,7 @@ From the root of the monorepo, build once so TypeScript doesn't complain about t
 Then use pnpm's filtering to run watch mode for this package and its workspace dependencies:
 
 ```bash
-pnpm --filter @puyogg/infrastructure... --no-sort --workspace-concurrency Infinity watch:esm
+pnpm --filter @puyogg/infra-entrypoint... --no-sort --workspace-concurrency Infinity watch:esm
 ```
 
 - `...` suffix: Matches the current package and its workspace dependencies https://pnpm.io/filtering#--filter-package_name-1
