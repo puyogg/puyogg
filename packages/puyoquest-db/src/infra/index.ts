@@ -37,6 +37,13 @@ const securityGroup = new aws.ec2.SecurityGroup('puyoquest-db-sg', {
   ],
 });
 
+const dbSubnetGroup = new aws.rds.SubnetGroup('puyoquest-db-sng', {
+  subnetIds: vpc.subnets.apply((subnets) => subnets.map((s) => s.id)),
+  tags: {
+    Name: 'PPQ DB Subnet group',
+  },
+});
+
 const db = new aws.rds.Instance('puyoquest-db', {
   dbName: 'ppqdb',
   instanceClass: 'db.t4g.micro',
@@ -49,6 +56,7 @@ const db = new aws.rds.Instance('puyoquest-db', {
   engine: 'postgres',
   engineVersion: '15',
   identifier: 'puyoquest-db',
+  dbSubnetGroupName: dbSubnetGroup.name,
   vpcSecurityGroupIds: [securityGroup.id],
 });
 export const dbAddress = db.address;

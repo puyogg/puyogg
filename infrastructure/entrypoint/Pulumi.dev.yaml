@@ -6,4 +6,4 @@ config:
   infrastructure:PUYOQUEST_DB_PASSWORD:
     secure: AAABAA4YMFQ5ouHbRmALhwlAr+q2/Jp2DcCp5WK4cF5uR/KK2xlG03KBLRffBeWPGxL6
   infrastructure:PUYOQUEST_DB_USER:
-    secure: AAABAGDfg5y5M4DX9sCTfVjKyJm8yDREqQ9wSgN9IPuZLDd5vNyQELxhKg==
+    secure: AAABAN0Ff7slE/VR3iASJNE3afJzBDuRzul27RgepknaJ0fSlRrznQ==
