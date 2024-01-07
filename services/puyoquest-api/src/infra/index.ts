@@ -40,8 +40,8 @@ const service = new awsx.ecs.FargateService('ppq-api-fg', {
     container: {
       name: 'puyoquest-api',
       image: pulumi.interpolate`${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/puyoquest-api:latest`,
-      cpu: 512,
-      memory: 128,
+      cpu: 256,
+      memory: 512,
       essential: true,
       portMappings: [
         {

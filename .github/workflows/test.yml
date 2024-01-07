@@ -6,22 +6,44 @@ on:
 permissions:
   id-token: write
   contents: read
+  pull-requests: write
 
 env:
   NODE_VERSION: 20
 
 jobs:
-  js_build:
-    name: (JS) Install Dependencies
+  # js_build:
+  #   name: (JS) Install Dependencies
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: ./.github/actions/setup-node-cache-build
+
+  infra_preview:
+    name: Preview Infrastructure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID_DEV }}:role/PulumiRole
+          aws-region: us-east-1
       - uses: ./.github/actions/setup-node-cache-build
+      - uses: pulumi/actions@v4
+        with:
+          command: preview
+          stack-name: puyogg/infrastructure/dev
+          work-dir: ./infrastructure/entrypoint
+          comment-on-pr: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
   js_lint:
     name: (JS) Format & Lint
     runs-on: ubuntu-latest
-    needs: js_build
+    # needs: js_build
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-cache-build
@@ -31,23 +53,23 @@ jobs:
   js_unit_test:
     name: (JS) Unit Test
     runs-on: ubuntu-latest
-    needs: js_build
+    # needs: js_build
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node-cache-build
       - run: pnpm -r unit-test
 
-  docker_build:
-    name: Build & Cache Docker Images
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare-docker-test-node
+  # docker_build:
+  #   name: Build & Cache Docker Images
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: ./.github/actions/prepare-docker-test-node
 
   integration_test:
     name: Integration Tests
     runs-on: ubuntu-latest
-    needs: docker_build
+    # needs: docker_build
     strategy:
       matrix:
         package:
