@@ -35,7 +35,7 @@ jobs:
           stack-name: puyogg/infrastructure/dev
           work-dir: ./infrastructure/entrypoint
           comment-on-pr: true
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
