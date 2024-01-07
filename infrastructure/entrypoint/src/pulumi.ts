@@ -83,8 +83,8 @@ const policyAttachments = [
   'arn:aws:iam::aws:policy/AmazonEC2FullAccess',
 ].map((arn) => {
   const name = `PulumiPolicy_${arn.split('/')[1]}`;
-  return new aws.iam.PolicyAttachment(name, {
-    roles: [role],
+  return new aws.iam.RolePolicyAttachment(name, {
+    role,
     policyArn: arn,
   });
 });
