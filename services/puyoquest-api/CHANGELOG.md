@@ -1,5 +1,12 @@
 # @puyogg/puyoquest-api
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [4503cd7]
+  - @puyogg/puyoquest-db@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes
