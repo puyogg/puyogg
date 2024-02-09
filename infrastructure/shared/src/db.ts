@@ -1,24 +1,16 @@
 import * as pulumi from '@pulumi/pulumi';
 import * as aws from '@pulumi/aws';
-import * as awsx from '@pulumi/awsx';
-import { imageCacheBucketName } from '../config.js';
+import { defaultVpc } from './vpc.js';
 
 const config = new pulumi.Config();
 
-const bucket = new aws.s3.Bucket(imageCacheBucketName, {
-  bucket: imageCacheBucketName,
-});
-export const bucketName = bucket.bucket;
-
-// a backup of what the allowed IP addresses are
 const allowedIPs = new aws.ssm.Parameter('allowed-IPs', {
   type: 'SecureString',
   value: config.requireSecret('PUYOQUEST_DB_ALLOWED_IP'),
 });
 
-const vpc = new awsx.ec2.Vpc('puyoquest-db-vpc');
-const securityGroup = new aws.ec2.SecurityGroup('puyoquest-db-sg', {
-  vpcId: vpc.vpcId,
+const securityGroup = new aws.ec2.SecurityGroup('puyogg-db-sg', {
+  vpcId: defaultVpc.vpcId,
   ingress: [
     {
       protocol: 'tcp',
@@ -37,14 +29,14 @@ const securityGroup = new aws.ec2.SecurityGroup('puyoquest-db-sg', {
   ],
 });
 
-const dbSubnetGroup = new aws.rds.SubnetGroup('puyoquest-db-sng', {
-  subnetIds: vpc.subnets.apply((subnets) => subnets.map((s) => s.id)),
+const dbSubnetGroup = new aws.rds.SubnetGroup('puyogg-db-sng', {
+  subnetIds: defaultVpc.privateSubnetIds,
   tags: {
-    Name: 'PPQ DB Subnet group',
+    Name: 'Primary puyogg db subnet group',
   },
 });
 
-const db = new aws.rds.Instance('puyoquest-db', {
+export const db = new aws.rds.Instance('puyoquest-db', {
   dbName: 'ppqdb',
   instanceClass: 'db.t4g.micro',
   username: config.requireSecret('PUYOQUEST_DB_USER'),
@@ -58,5 +50,6 @@ const db = new aws.rds.Instance('puyoquest-db', {
   identifier: 'puyoquest-db',
   dbSubnetGroupName: dbSubnetGroup.name,
   vpcSecurityGroupIds: [securityGroup.id],
+  skipFinalSnapshot: true,
+  publiclyAccessible: false,
 });
-export const dbAddress = db.address;

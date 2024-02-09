@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/puyogg/puyogg.git",
-    "directory": "infrastructure/infra-entrypoint"
+    "directory": "infrastructure/entrypoint"
   },
   "scripts": {
     "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm",
@@ -41,6 +41,7 @@
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
     "@pulumi/pulumi": "^3.99.0",
+    "@puyogg/infra-shared": "workspace:^",
     "@puyogg/puyoquest-api": "workspace:^",
     "@puyogg/puyoquest-db": "workspace:^"
   }
