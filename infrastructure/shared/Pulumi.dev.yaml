@@ -1,9 +1,0 @@
-config:
-  aws:region: us-east-1
-  infrastructure:AWS_ACCOUNT_ID: "977592315709"
-  infrastructure:PUYOQUEST_DB_ALLOWED_IP:
-    secure: AAABAGoIzUDj3H//uFqQNww3SnjrTK94puvkzMiBqIGPXjX/5S+8Nw7z
-  infrastructure:PUYOQUEST_DB_PASSWORD:
-    secure: AAABAA4YMFQ5ouHbRmALhwlAr+q2/Jp2DcCp5WK4cF5uR/KK2xlG03KBLRffBeWPGxL6
-  infrastructure:PUYOQUEST_DB_USER:
-    secure: AAABAN0Ff7slE/VR3iASJNE3afJzBDuRzul27RgepknaJ0fSlRrznQ==

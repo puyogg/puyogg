@@ -29,8 +29,6 @@ if (!AWS_ACCOUNT_ID) {
 // });
 
 // // Deploy an ECS Service on Fargate to host the application container.
-// // I think this will fail on first run because the image won't exist yet.
-// // I plan to manage the image pushes outside of Pulumi.
 // const service = new awsx.ecs.FargateService('ppq-api-fg', {
 //   name: 'ppq-api-service', // this exact name gets referenced in a github actions yml
 //   cluster: cluster.arn,
