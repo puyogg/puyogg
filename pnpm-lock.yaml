@@ -41,6 +41,64 @@ importers:
         specifier: ^0.5.21
         version: 0.5.21(patch_hash=bnvuz5lnlmkpvro6cnps75dmgm)
 
+  infrastructure/components:
+    dependencies:
+      '@pulumi/aws':
+        specifier: ^6.17.0
+        version: 6.17.0
+      '@pulumi/awsx':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@pulumi/pulumi':
+        specifier: ^3.99.0
+        version: 3.99.0
+    devDependencies:
+      '@babel/cli':
+        specifier: ^7.23.0
+        version: 7.23.0(@babel/core@7.23.3)
+      '@babel/core':
+        specifier: ^7.23.3
+        version: 7.23.3
+      '@babel/preset-env':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
+      '@babel/preset-typescript':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
+      '@types/babel__core':
+        specifier: ^7.20.4
+        version: 7.20.4
+      '@types/node':
+        specifier: ^20
+        version: 20.10.3
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.11.0
+        version: 6.11.0(@typescript-eslint/parser@6.11.0)(eslint@8.54.0)(typescript@5.2.2)
+      '@typescript-eslint/parser':
+        specifier: ^6.11.0
+        version: 6.11.0(eslint@8.54.0)(typescript@5.2.2)
+      '@typescript-eslint/utils':
+        specifier: ^6.11.0
+        version: 6.11.0(patch_hash=z57gkyl7ma53zrsqlgwsl7vgri)(eslint@8.54.0)(typescript@5.2.2)
+      babel-plugin-source-map-support:
+        specifier: ^2.2.0
+        version: 2.2.0
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
+      eslint:
+        specifier: ^8.54.0
+        version: 8.54.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.54.0)
+      prettier:
+        specifier: ^3.1.0
+        version: 3.1.0
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
   infrastructure/entrypoint:
     dependencies:
       '@pulumi/aws':
