@@ -1,11 +1,6 @@
 import * as awsx from '@pulumi/awsx';
+import { VpcIpv6 } from '@puyogg/infra-components';
 
 export const defaultVpc = new awsx.ec2.DefaultVpc('default-vpc');
 
-export const puyoggVpc = new awsx.ec2.Vpc('puyogg-vpc', {
-  assignGeneratedIpv6CidrBlock: true,
-  cidrBlock: '10.0.0.0/16',
-  enableDnsHostnames: true,
-  enableDnsSupport: true,
-  natGateways: { strategy: awsx.ec2.NatGatewayStrategy.None },
-});
+export const puyoggVpc = new VpcIpv6('puyogg', { test: 'asdf' });

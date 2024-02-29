@@ -59,6 +59,9 @@ importers:
       '@babel/core':
         specifier: ^7.23.3
         version: 7.23.3
+      '@babel/plugin-transform-class-properties':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
       '@babel/preset-env':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.3)
@@ -110,6 +113,9 @@ importers:
       '@pulumi/pulumi':
         specifier: ^3.99.0
         version: 3.99.0
+      '@puyogg/infra-components':
+        specifier: workspace:^
+        version: link:../components
       '@puyogg/infra-shared':
         specifier: workspace:^
         version: link:../shared
@@ -126,6 +132,9 @@ importers:
       '@babel/core':
         specifier: ^7.23.3
         version: 7.23.3
+      '@babel/plugin-transform-class-properties':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
       '@babel/preset-env':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.3)
@@ -177,6 +186,9 @@ importers:
       '@pulumi/pulumi':
         specifier: ^3.99.0
         version: 3.99.0
+      '@puyogg/infra-components':
+        specifier: workspace:^
+        version: link:../components
     devDependencies:
       '@babel/cli':
         specifier: ^7.23.0
@@ -184,6 +196,9 @@ importers:
       '@babel/core':
         specifier: ^7.23.3
         version: 7.23.3
+      '@babel/plugin-transform-class-properties':
+        specifier: ^7.23.3
+        version: 7.23.3(@babel/core@7.23.3)
       '@babel/preset-env':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.3)

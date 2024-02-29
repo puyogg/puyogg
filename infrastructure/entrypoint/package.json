@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.3",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@types/babel__core": "^7.20.4",
@@ -41,6 +42,7 @@
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
     "@pulumi/pulumi": "^3.99.0",
+    "@puyogg/infra-components": "workspace:^",
     "@puyogg/infra-shared": "workspace:^",
     "@puyogg/puyoquest-api": "workspace:^",
     "@puyogg/puyoquest-db": "workspace:^"

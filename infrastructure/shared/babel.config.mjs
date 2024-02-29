@@ -16,7 +16,7 @@ export default {
         ],
         '@babel/preset-typescript',
       ],
-      plugins: ['source-map-support'],
+      plugins: ['source-map-support', '@babel/plugin-transform-class-properties'],
     },
   },
 };

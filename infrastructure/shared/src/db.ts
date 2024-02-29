@@ -4,19 +4,20 @@ import { puyoggVpc } from './vpc.js';
 
 const config = new pulumi.Config();
 
-const allowedIPs = new aws.ssm.Parameter('allowed-IPs', {
-  type: 'SecureString',
-  value: config.requireSecret('PUYOQUEST_DB_ALLOWED_IP'),
-});
+// const allowedIPs = new aws.ssm.Parameter('allowed-IPs', {
+//   type: 'SecureString',
+//   value: config.requireSecret('PUYOQUEST_DB_ALLOWED_IP'),
+// });
 
 const securityGroup = new aws.ec2.SecurityGroup('puyogg-db-sg', {
-  vpcId: puyoggVpc.vpcId,
+  vpcId: puyoggVpc.vpc.id,
   ingress: [
     {
       protocol: 'tcp',
       fromPort: 5432,
       toPort: 5432,
-      cidrBlocks: allowedIPs.value.apply((v) => v.split(',').map((address) => `${address}/32`)),
+      // cidrBlocks: allowedIPs.value.apply((v) => v.split(',').map((address) => `${address}/32`)),
+      cidrBlocks: ['10.0.0.0/16'],
     },
   ],
   egress: [
@@ -30,14 +31,14 @@ const securityGroup = new aws.ec2.SecurityGroup('puyogg-db-sg', {
 });
 
 const subnetGroup = new aws.rds.SubnetGroup('puyogg-db-sng', {
-  subnetIds: puyoggVpc.privateSubnetIds,
+  subnetIds: [puyoggVpc.privateSubnetA.id, puyoggVpc.privateSubnetB.id],
   tags: {
     Name: 'Primary puyogg db subnet group',
   },
 });
 
-export const db = new aws.rds.Instance('puyoquest-db', {
-  dbName: 'ppqdb',
+export const db = new aws.rds.Instance('puyogg-db', {
+  dbName: 'puyoggdb',
   instanceClass: 'db.t4g.micro',
   username: config.requireSecret('PUYOQUEST_DB_USER'),
   password: config.requireSecret('PUYOQUEST_DB_PASSWORD'),
