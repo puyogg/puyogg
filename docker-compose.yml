@@ -31,7 +31,8 @@ services:
       ts-postgres-template:
         condition: service_healthy
     env_file:
-      - ./services/ts-fastify-template/.env
+      - path: ./services/ts-fastify-template/.env
+        required: false
     ports:
       - 3000:3000 # api
       - 9229:9229 # api debug
