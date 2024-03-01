@@ -13,7 +13,7 @@ beforeAll(async () => {
 
   await adminSql`DROP DATABASE IF EXISTS ${adminSql(dbName)}`;
   await adminSql`CREATE DATABASE ${adminSql(dbName)} TEMPLATE ${adminSql(
-    process.env.POSTGRES_DBNAME ?? 'db',
+    process.env.POSTGRES_DBNAME ?? 'ppqdb',
   )}`;
 
   await adminSql.end();
