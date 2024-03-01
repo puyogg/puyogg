@@ -1,12 +1,17 @@
 {
-  "name": "@puyogg/infra-entrypoint",
-  "version": "0.1.2",
+  "name": "@puyogg/infra-components",
+  "version": "0.0.0",
+  "description": "",
   "type": "module",
-  "main": "./esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/puyogg/puyogg.git",
-    "directory": "infrastructure/entrypoint"
+    "directory": "infrastructure/components"
   },
   "scripts": {
     "clean": "rm -f tsconfig.tsbuildinfo && rm -rf esm",
@@ -15,6 +20,7 @@
     "lint": "eslint src",
     "lint-fix": "eslint --fix src",
     "tsc:esm": "tsc",
+    "typecheck": "tsc",
     "babel:esm": "BABEL_ENV=esm babel src --out-dir esm --extensions '.ts'",
     "build:esm": "pnpm tsc:esm && pnpm babel:esm",
     "watch:esm": "concurrently \"pnpm tsc:esm --watch --preserveWatchOutput\" \"pnpm babel:esm --watch\"",
@@ -41,10 +47,6 @@
   "dependencies": {
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
-    "@pulumi/pulumi": "^3.99.0",
-    "@puyogg/infra-components": "workspace:^",
-    "@puyogg/infra-shared": "workspace:^",
-    "@puyogg/puyoquest-api": "workspace:^",
-    "@puyogg/puyoquest-db": "workspace:^"
+    "@pulumi/pulumi": "^3.99.0"
   }
 }
