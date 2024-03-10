@@ -38,9 +38,14 @@ services:
     depends_on:
       ts-postgres-template:
         condition: service_healthy
-    env_file:
-      - path: ./services/ts-fastify-template/.env
-        required: false
+    environment:
+      - FASTIFY_HOST=0.0.0.0
+      - POSTGRES_HOST=ts-postgres-template
+      - POSTGRES_HOST_TEST=ts-postgres-template-test
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_DBNAME=db
+      - POSTGRES_PASSWORD=password
     ports:
       - 3000:3000 # api
       - 9229:9229 # api debug
