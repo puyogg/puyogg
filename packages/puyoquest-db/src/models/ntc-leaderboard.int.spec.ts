@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 describe('NtcLeaderboard', () => {
   let ntcLeaderboardModel: NtcLeaderboardModel;
 
-  beforeEach(async ({ models }) => {
+  beforeEach(({ models }) => {
     ntcLeaderboardModel = models.ntcLeaderboardModel;
   });
 
