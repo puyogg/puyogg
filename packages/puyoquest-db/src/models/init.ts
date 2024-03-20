@@ -3,12 +3,14 @@ import { CharacterModel } from './character.js';
 import { CardModel } from './card.js';
 import { AliasModel } from './alias.js';
 import { CronLastUpdatedModel } from './cron-last-updated.js';
+import { NtcLeaderboardModel } from './ntc-leaderboard.js';
 
 export interface Models {
   characterModel: CharacterModel;
   cardModel: CardModel;
   aliasModel: AliasModel;
   cronLastUpdatedModel: CronLastUpdatedModel;
+  ntcLeaderboardModel: NtcLeaderboardModel;
 }
 
 export const initModels = (sql: Sql): Models => {
@@ -17,5 +19,6 @@ export const initModels = (sql: Sql): Models => {
     cardModel: new CardModel(sql),
     aliasModel: new AliasModel(sql),
     cronLastUpdatedModel: new CronLastUpdatedModel(sql),
+    ntcLeaderboardModel: new NtcLeaderboardModel(sql),
   };
 };
