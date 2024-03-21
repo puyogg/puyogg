@@ -17,12 +17,6 @@ If you're new to web development and need more installation help, see: TODO
 
 ### Running a service
 
-Copy env files:
-
-```sh
-./scripts/init-env.sh
-```
-
 Install dependencies and compile TypeScript
 
 ```sh
