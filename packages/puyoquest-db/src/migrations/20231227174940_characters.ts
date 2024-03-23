@@ -30,5 +30,5 @@ export const up = async (sql: Sql) => {
 
 // If your change isn't supported by Postgres transactions
 export const down = async (sql: Sql) => {
-  await sql`DROP TABLE character`;
+  await sql`DROP TABLE IF EXISTS character`;
 };
