@@ -5,17 +5,9 @@ import { AliasModel } from './alias.js';
 import { CronLastUpdatedModel } from './cron-last-updated.js';
 import { NtcLeaderboardModel } from './ntc-leaderboard.js';
 import { ServerSettingsModel } from './server-settings.js';
+import { ImageCacheModel } from './image-cache.js';
 
-export interface Models {
-  characterModel: CharacterModel;
-  cardModel: CardModel;
-  aliasModel: AliasModel;
-  cronLastUpdatedModel: CronLastUpdatedModel;
-  ntcLeaderboardModel: NtcLeaderboardModel;
-  serverSettingsModel: ServerSettingsModel;
-}
-
-export const initModels = (sql: Sql): Models => {
+export const initModels = (sql: Sql) => {
   return {
     characterModel: new CharacterModel(sql),
     cardModel: new CardModel(sql),
@@ -23,5 +15,8 @@ export const initModels = (sql: Sql): Models => {
     cronLastUpdatedModel: new CronLastUpdatedModel(sql),
     ntcLeaderboardModel: new NtcLeaderboardModel(sql),
     serverSettingsModel: new ServerSettingsModel(sql),
+    imageCacheModel: new ImageCacheModel(sql),
   };
 };
+
+export type Models = ReturnType<typeof initModels>;
