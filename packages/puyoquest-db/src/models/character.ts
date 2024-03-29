@@ -24,6 +24,7 @@ export const CharacterCreate = Character.partial({
   voiceTrans: true,
   updatedAt: true,
 });
+export type CharacterCreate = z.infer<typeof CharacterCreate>;
 
 export class CharacterModel extends Model<typeof Character, typeof CharacterCreate> {
   constructor(sql: Sql) {
