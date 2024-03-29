@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { Model } from '../types/model.js';
-import { Sql } from 'postgres';
+import { Sql, type PendingQuery } from 'postgres';
+import type { Result } from '../types/result.js';
 
 export const Card = z.object({
   cardId: z.string(),
