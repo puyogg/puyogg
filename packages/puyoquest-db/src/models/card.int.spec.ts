@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import { CharacterCreate } from './character.js';
 import { Card, CardCreate, CardModel } from './card.js';
-import { afterAll, afterEach, beforeEach, describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import { CharacterModel } from './character.js';
 
 describe('Card', () => {
