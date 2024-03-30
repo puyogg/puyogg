@@ -102,6 +102,20 @@ describe('Card', () => {
       mainColor: 'Green',
       sideColor: 'Red',
     },
+    CARBUNCLE_6: {
+      cardId: '403506',
+      charId: '4035',
+      rarity: '6',
+      rarityModifier: null,
+      name: 'Carbuncle',
+      nameNormalized: 'carbuncle'.normalize('NFKD'),
+      jpName: 'カーバンクル',
+      jpNameNormalized: 'カーバンクル'.normalize('NFKD'),
+      linkName: 'https://puyonexus.com/wiki/PPQ:Carbuncle/★6',
+      linkNameNormalized: encodeURI('https://puyonexus.com/wiki/PPQ:Carbuncle/★6'),
+      cardType: 'character',
+      mainColor: 'Yellow',
+    },
     CARBUNCLE_7: {
       cardId: '403507',
       charId: '4035',
@@ -270,7 +284,11 @@ describe('Card', () => {
       assert(result.success);
       const cardIds = result.data;
 
-      const expectedCardIds = [CARD_SEED.ARLE_7.cardId, CARD_SEED.CARBUNCLE_7.cardId];
+      const expectedCardIds = [
+        CARD_SEED.ARLE_7.cardId,
+        CARD_SEED.CARBUNCLE_6.cardId,
+        CARD_SEED.CARBUNCLE_7.cardId,
+      ];
 
       expect(cardIds).toHaveLength(expectedCardIds.length);
       expectedCardIds.forEach((expectedCardId) => {
@@ -284,5 +302,20 @@ describe('Card', () => {
       assert(result.success === false);
       expect(result.error.message).toEqual('No values passed to includeCharIds or excludeCharIds');
     });
+  });
+
+  test('listRarestCards', async () => {
+    const cards = await cardModel.listRarestCards([
+      CHARACTER_SEED.SANTA_RINGO.charId,
+      CHARACTER_SEED.CARBUNCLE.charId,
+    ]);
+
+    const expectedCards = [CARD_SEED.SANTA_RINGO_6S, CARD_SEED.CARBUNCLE_7].map((partialCard) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      expect.objectContaining(partialCard),
+    );
+
+    expect(expectedCards).toHaveLength(cards.length);
+    expect(cards).toEqual(expect.arrayContaining(expectedCards));
   });
 });

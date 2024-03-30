@@ -162,4 +162,15 @@ export class CardModel extends Model<typeof Card, typeof CardCreate> {
 
     return { success: true, data: cardIds };
   }
+
+  async listRarestCards(charIds: string[]): Promise<Card[]> {
+    const { sql, tableName } = this;
+
+    return sql<Card[]>`
+      SELECT DISTINCT ON (char_id) *
+      FROM ${sql(tableName)}
+      WHERE char_id IN ${sql(charIds)} AND card_type = 'character'
+      ORDER BY char_id, rarity DESC, rarity_modifier DESC NULLS LAST
+    `;
+  }
 }
