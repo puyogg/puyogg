@@ -7,6 +7,14 @@ services:
       args:
         - NODE_VERSION=20.10.0
         - WORKDIR=${PWD}
+    tty: true
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: ${PWD}
+        - action: rebuild
+          path: pnpm-lock.yaml
   ts-postgres-template:
     image: postgres:16
     ports:
@@ -30,8 +38,14 @@ services:
     depends_on:
       ts-postgres-template:
         condition: service_healthy
-    env_file:
-      - ./services/ts-fastify-template/.env
+    environment:
+      - FASTIFY_HOST=0.0.0.0
+      - POSTGRES_HOST=ts-postgres-template
+      - POSTGRES_HOST_TEST=ts-postgres-template-test
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_DBNAME=db
+      - POSTGRES_PASSWORD=password
     ports:
       - 3000:3000 # api
       - 9229:9229 # api debug
