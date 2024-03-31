@@ -36,4 +36,25 @@ describe('ServerSettings', () => {
     expect(updatedSetting?.updatedAt).toBeDefined();
     expect(updatedSetting?.updatedAt.valueOf()).toBeGreaterThan(serverSetting.updatedAt.valueOf());
   });
+
+  describe('findOrCreate', () => {
+    test('finds existing server setting', async () => {
+      const serverSetting = await serverSettingsModel.create({
+        serverId: 'serverId',
+        leaderboardChannel: 'channel123',
+      });
+
+      const foundSetting = await serverSettingsModel.findOrCreate(serverSetting.serverId);
+      expect(foundSetting).toEqual(serverSetting);
+    });
+
+    test('creates setting if not exists', async () => {
+      const foundSetting = await serverSettingsModel.findOrCreate('serverId');
+      expect(foundSetting).toEqual(
+        expect.objectContaining({
+          serverId: 'serverId',
+        }),
+      );
+    });
+  });
 });

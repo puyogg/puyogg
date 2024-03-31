@@ -19,4 +19,13 @@ export class ServerSettingsModel extends Model<typeof ServerSettings, typeof Ser
   constructor(sql: Sql) {
     super(sql, 'server_settings', ServerSettings, 'server_id');
   }
+
+  async findOrCreate(serverId: string): Promise<ServerSettings> {
+    const existing = await this.findOne(serverId);
+    if (!existing) {
+      return this.create({ serverId });
+    }
+
+    return existing;
+  }
 }
