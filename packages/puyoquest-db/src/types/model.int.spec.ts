@@ -67,6 +67,16 @@ describe('Base DB Model', () => {
     expect(foundSample).toEqual(sample);
   });
 
+  test('finds multiple samples by primary key', async () => {
+    const sample1 = await sampleModel.create({ name: 'Yotarou' });
+    const sample2 = await sampleModel.create({ name: 'Ryoma' });
+    const sample3 = await sampleModel.create({ name: 'unko' });
+
+    const samples = await sampleModel.findMany([sample1.id, sample2.id, sample3.id]);
+
+    expect(samples).toEqual(expect.arrayContaining([sample3, sample2, sample1]));
+  });
+
   test('deletes a Sample', async () => {
     const sample = await sampleModel.create({ name: 'Yotarou' });
     const deleteCount = await sampleModel.deleteOne(sample.id);

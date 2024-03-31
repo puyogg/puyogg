@@ -33,6 +33,16 @@ export abstract class Model<
     return result;
   }
 
+  async findMany(ids: (string | number)[]): Promise<T[]> {
+    const { sql, tableName } = this;
+
+    return sql<T[]>`
+      SELECT *
+      FROM ${sql(tableName)}
+      WHERE ${sql(this.primaryKey)} IN ${sql(ids)}
+    `;
+  }
+
   /** could this be undefined? */
   async create<Create extends z.infer<C>>(params: Create): Promise<T> {
     const [result] = await this.sql<T[]>`
