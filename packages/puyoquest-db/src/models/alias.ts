@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Model } from '../types/model.js';
-import { PendingQuery, Sql } from 'postgres';
+import { Sql } from 'postgres';
 
 export const Alias = z.object({
   alias: z.string(),
