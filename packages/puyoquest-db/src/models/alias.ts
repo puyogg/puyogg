@@ -1,9 +1,10 @@
 import { z } from 'zod';
 import { Model } from '../types/model.js';
 import { Sql } from 'postgres';
+import { normalizeName } from '../util/normalize-name.js';
 
 export const Alias = z.object({
-  alias: z.string(),
+  alias: z.string().pipe(normalizeName),
   charId: z.string(),
   internal: z.boolean(),
   cardType: z.enum(['character', 'material']),

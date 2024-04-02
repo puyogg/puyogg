@@ -2,8 +2,6 @@
 
 ## Migrations
 
-I had to write my own migration CLI for postgres.js. These migrations go forwards only (i.e. it will automatically roll back failed transactions, but there's no CLI or anything for manually rolling back specific migrations).
-
 Create a new migration (don't add an extension to migration-name):
 
 ```sh
@@ -19,12 +17,14 @@ pnpm migrate
 
 ## Integration Testing
 
+Integration tests in this package should check the correctness of queries, migrations, and Postgres triggers.
+
 ### Locally
 
 ```sh
-docker compose up -d ts-db-template-test
-cd packages/ts-postgres-template
+docker compose up -d puyoquest-db
+cd packages/puyoquest-db
 pnpm build:esm
-POSTGRES_PORT=35434 pnpm migrate
-POSTGRES_PORT=35434 pnpm test:int-watch
+POSTGRES_HOST=35433 POSTGRES_PORT=35434 pnpm migrate
+POSTGRES_HOST=35433 POSTGRES_PORT=35434 pnpm test:int-watch
 ```

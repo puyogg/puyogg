@@ -1,8 +1,8 @@
 import { Character } from './character.js';
-import { afterEach, describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 describe('Character', () => {
-  afterEach(async ({ sql, models }) => {
+  beforeEach(async ({ sql, models }) => {
     await sql`DELETE FROM ${sql(models.characterModel.tableName)}`;
   });
 
