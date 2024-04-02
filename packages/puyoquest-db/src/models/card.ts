@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { Model } from '../types/model.js';
 import { Sql, type PendingQuery } from 'postgres';
 import type { Result } from '../types/result.js';
+import { normalizeName } from '../util/normalize-name.js';
 
 export const Card = z.object({
   cardId: z.string(),
@@ -9,11 +10,11 @@ export const Card = z.object({
   rarity: z.string(),
   rarityModifier: z.string().nullable(),
   name: z.string(),
-  nameNormalized: z.string(),
+  nameNormalized: z.string().pipe(normalizeName),
   jpName: z.string().nullable(),
-  jpNameNormalized: z.string().nullable(),
+  jpNameNormalized: z.string().pipe(normalizeName).nullable(),
   linkName: z.string(),
-  linkNameNormalized: z.string(),
+  linkNameNormalized: z.string().pipe(normalizeName),
   cardType: z.enum(['character', 'material']),
   mainColor: z.string(),
   sideColor: z.string().nullable(),
