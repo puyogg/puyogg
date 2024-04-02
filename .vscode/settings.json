@@ -1,4 +1,26 @@
 {
   "editor.formatOnSave": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 25432,
+      "driver": "PostgreSQL",
+      "password": "dev_postgres_password",
+      "database": "discordbot-db",
+      "username": "postgres",
+      "name": "LEGACY puyoquest db"
+    },
+    {
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 35433,
+      "driver": "PostgreSQL",
+      "password": "password",
+      "database": "ppqdb",
+      "username": "postgres",
+      "name": "puyoquest db"
+    }
+  ]
 }
