@@ -1,5 +1,18 @@
 # @puyogg/puyoquest-api
 
+## 0.3.0
+
+### Minor Changes
+
+- 7702b34: Move database to a shared infrastructure package
+
+### Patch Changes
+
+- Updated dependencies [7702b34]
+- Updated dependencies [f1fbe4b]
+- Updated dependencies [6983c5c]
+  - @puyogg/puyoquest-db@0.2.0
+
 ## 0.2.2
 
 ### Patch Changes

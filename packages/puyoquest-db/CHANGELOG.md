@@ -1,5 +1,13 @@
 # @puyogg/puyoquest-db
 
+## 0.2.0
+
+### Minor Changes
+
+- 7702b34: Move database to a shared infrastructure package
+- f1fbe4b: Seed data up to Mar 31, 2024
+- 6983c5c: Ported old table queries
+
 ## 0.1.2
 
 ### Patch Changes
